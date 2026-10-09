@@ -33,6 +33,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Qual sua calda? (escolha 1) | Geleia de morango caseira | Grátis |
 | Qual sua calda? (escolha 1) | Chocolate | Grátis |
 | Qual sua fruta? (até 4) | Banana | Grátis |
+| Qual sua fruta? (até 4) | Abacaxi | Grátis |
 | Qual sua fruta? (até 4) | Uvas | R$ 0,99 |
 | Qual sua fruta? (até 4) | Morango | R$ 2,89 |
 | Qual sua fruta? (até 4) | Kiwi | R$ 3,89 |
@@ -49,7 +50,9 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Guloseimas Imperiais (até 5) | Kit Kat Branco | R$ 2,89 |
 | Guloseimas Imperiais (até 5) | Chocolate Branco c/ Cookies | R$ 2,89 |
 | Guloseimas Imperiais (até 5) | Chocolate Clássico c/ Ovomaltine | R$ 2,89 |
-| Deseja talheres? (escolha 1) | Quero talheres | Grátis |
+| Guloseimas Imperiais (até 5) | Oreo | R$ 0,99 |
+| Guloseimas Imperiais (até 5) | Bis | R$ 1,99 |
+| Deseja talheres? (escolha 1) | Quero talheres | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Açaís Assinatura
