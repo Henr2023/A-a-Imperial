@@ -28,10 +28,10 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango | R$ 5,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu | R$ 6,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí c/ Cupuaçu | R$ 5,99 |
-| Qual sua calda? (escolha 1) | Leite condensado | Grátis |
-| Qual sua calda? (escolha 1) | Maracujá caseiro | Grátis |
-| Qual sua calda? (escolha 1) | Geleia de morango caseira | Grátis |
-| Qual sua calda? (escolha 1) | Chocolate | Grátis |
+| Qual sua calda? (até 1) | Leite condensado | Grátis |
+| Qual sua calda? (até 1) | Maracujá caseiro | Grátis |
+| Qual sua calda? (até 1) | Geleia de morango caseira | Grátis |
+| Qual sua calda? (até 1) | Chocolate | Grátis |
 | Qual sua fruta? (até 4) | Banana | Grátis |
 | Qual sua fruta? (até 4) | Abacaxi | Grátis |
 | Qual sua fruta? (até 4) | Uvas | R$ 0,99 |
