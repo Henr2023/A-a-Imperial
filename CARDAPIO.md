@@ -89,14 +89,15 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Escondidinho de Uva | Uvas escondidas entre creme de Ninho e chocolate, com granulado branco. | R$ 18,00 |
 | Manga Louca (500ml) | Manga verde ou meio madura com sal, limão, pimenta-do-reino ou calabresa. | R$ 16,99 |
 
-## Bebidas
+## Bebidas s/ Álcool
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Shake de Açaí (garrafinha) | Açaí, leite, leite condensado, paçoca, leite em pó e banana batidos. | R$ 21,99 |
-| Coca-Cola / Coca Zero lata | Gelada. | a partir de R$ 7,98 |
-| Água com ou sem gás | 500ml. | R$ 4,99 |
-| Monster | Lata 473ml. | R$ 13,99 |
+| Coca-Cola Zero 310ml | Gelada. | R$ 6,99 |
+| Coca-Cola Tradicional 310ml | Gelada. | R$ 6,99 |
+| Água sem gás 500ml | Gelada. | R$ 5,99 |
+| Água com gás 500ml | Gelada. | R$ 5,99 |
+| Red Bull 250ml | Energético, gelado. | R$ 15,99 |
 
 ## Complementos e adicionais
 
