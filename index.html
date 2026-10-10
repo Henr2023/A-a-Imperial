@@ -158,7 +158,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   function money(s){var m=/R\$\s*([\d.]*\d,\d{2})/.exec(s||'');return m?parseFloat(m[1].replace(/\./g,'').replace(',','.')):0}
   function find(T,re){for(var k in T){if(re.test(k))return T[k]}return []}
   function buildMonte(T){
-    var sizes=find(T,/^monte o seu/i).map(function(c){var f=/\+\s*(\d+)\s*complemento/i.exec(c[1]);return{n:c[0].replace(/^copo imperial\s*/i,''),p:money(c[2]),free:f?+f[1]:3}});
+    var sizes=find(T,/^(monte o seu|copos imperiais)/i).map(function(c){var f=/\+\s*(\d+)\s*complemento/i.exec(c[1]);return{n:c[0].replace(/^copo imperial\s*/i,''),p:money(c[2]),free:f?+f[1]:3}});
     if(!sizes.length)return;
     var comp=find(T,/complementos e adicionais/i),G={};
     comp.forEach(function(c){G[c[0].toLowerCase()]={opts:c[1].split(',').map(function(x){return x.trim()}).filter(Boolean),p:money(c[2])}});
@@ -243,7 +243,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
       var id=slug(title),rows=T[title];
       tabs+='<a href="#'+id+'">'+esc(title)+'</a>';
       html+='<section id="'+id+'"><h3>'+esc(title)+'</h3>';
-      var bk=/^monte o seu/i.test(title)&&MONTE?'monte':(CFG[id]?id:null);
+      var bk=/^(monte o seu|copos imperiais)/i.test(title)&&MONTE?'monte':(CFG[id]?id:null);
       if(bk==='monte'){
         html+='<div class="row btn" data-k="monte" role="button" tabindex="0"><div class="info"><h4>Monte seu Açaí</h4><p>Escolha o tipo, o tamanho, caldas, frutas, cremes e guloseimas do seu jeito.</p><div class="pr"><span class="from">a partir de</span>'+brl(MONTE.min)+'</div></div><div class="th">'+A.cup+'</div></div>';
       } else if(bk){var b=CFG[bk];
