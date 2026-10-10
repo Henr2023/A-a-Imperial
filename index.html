@@ -247,7 +247,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
       if(bk==='monte'){
         html+='<div class="row btn" data-k="monte" role="button" tabindex="0"><div class="info"><h4>Monte seu Açaí</h4><p>Escolha o tipo, o tamanho, caldas, frutas, cremes e guloseimas do seu jeito.</p><div class="pr"><span class="from">a partir de</span>'+brl(MONTE.min)+'</div></div><div class="th">'+A.cup+'</div></div>';
       } else if(bk){var b=CFG[bk];
-        html+='<div class="row btn" data-k="'+bk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(b.name)+'</h4><p>'+esc(b.sub)+'</p><div class="pr">'+(b.base?brl(b.base):'')+'</div></div><div class="th">'+A.duo+'</div></div>';
+        html+='<div class="row btn" data-k="'+bk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(b.name)+'</h4><p>'+esc(b.sub)+'</p><div class="pr">'+(b.base?brl(b.base):'')+'</div></div><div class="th">'+art(b.name,title)+'</div></div>';
       } else {
         html+=rows.map(function(c){
           return '<div class="row"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+esc(c[2])+'</div></div><div class="th">'+art(c[0],title)+'</div></div>';
