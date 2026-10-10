@@ -108,6 +108,5 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Cremes artesanais | Creme de Ninho, brigadeiro black, creme de morango, creme de maracujá, creme de chocolate branco | R$ 4,00 cada |
 | Premium | Nutella, Ovomaltine, Bis, Oreo, Sonho de Valsa, Ouro Branco, KitKat | R$ 5,00 cada |
 | Caldas | Chocolate, morango, maracujá, caramelo | R$ 2,00 cada |
-| Porção extra de açaí | +100ml | R$ 4,00 |
 
 Nos combos: adicione uma bebida (Coca lata ou água) com R$ 1,00 de desconto.
