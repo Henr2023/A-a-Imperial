@@ -2,6 +2,14 @@
 
 Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
+## Açaís Supremos Imperiais
+
+| Item | Descrição | Preço |
+|---|---|---|
+| Açaí Roleta Imperial 1400ml | A maior roleta da casa, para compartilhar. | R$ 79,90 |
+| Açaí Tigela 1000ml | Tigela de 1 litro de açaí, para compartilhar. | R$ 79,90 |
+| Açaí Roleta 1000ml | Roleta de 1 litro de açaí, para compartilhar. | R$ 79,90 |
+
 ## Destaques da Casa
 
 | Item | Descrição | Preço |
