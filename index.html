@@ -103,7 +103,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   </div>
   <nav class="tabs" id="tabs"></nav>
   <main id="menu"><div class="load">Carregando cardápio…</div></main>
-  <div class="tip">Nos combos: adicione uma bebida (Coca lata ou água) com R$ 1,00 de desconto.</div>
   <footer>Açaí Imperial · Preços sujeitos a alteração</footer>
 </div>
 <div class="ov" id="ov" hidden role="dialog" aria-modal="true" aria-labelledby="shT">
@@ -240,6 +239,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     });
     buildMonte(T);Object.keys(T).forEach(function(k){if(/\|\s*etapa\s*\|/.test(H[k]))buildEtapas(k,T[k])});
     Object.keys(T).forEach(function(title){
+      if(/complementos e adicionais/i.test(title))return; /* usada só pelo Monte seu Açaí, não aparece na lista */
       var id=slug(title),rows=T[title];
       tabs+='<a href="#'+id+'">'+esc(title)+'</a>';
       html+='<section id="'+id+'"><h3>'+esc(title)+'</h3>';
