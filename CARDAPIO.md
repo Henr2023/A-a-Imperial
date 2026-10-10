@@ -10,7 +10,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Coroa Imperial de Nutella (400ml) | Coroa de banana, leite condensado, leite em pó, amendoim e Nutella generosa no centro. Chega bonito, volta vazio. | R$ 36,99 |
 | Mini Roleta (1 pessoa) | 4 divisões: banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
 
-## Monte o Seu
+## Copos Imperiais
 
 | Item | Descrição | Preço |
 |---|---|---|
