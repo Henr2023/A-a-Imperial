@@ -61,11 +61,11 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
-## Açaí Casal
+## O Preferido das Noites
 
 | Etapa | Opção | Preço |
 |---|---|---|
-| Açaí Casal | Açaí para dois, montado do jeito de vocês: escolha o tipo, a calda, as frutas, os cremes e as guloseimas. | R$ 44,99 |
+| Açaí Casal | Açaí para dois, montado do jeito de vocês: escolha o tipo, a calda, as frutas, os cremes e as guloseimas. | R$ 53,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí Imperial Nobre | Grátis |
 | Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango | R$ 5,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu | R$ 6,99 |
