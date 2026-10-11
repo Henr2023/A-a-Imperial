@@ -10,11 +10,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Escolha seu Supremo (escolha 1) | Açaí Roleta Imperial 1400ml | R$ 9,99 |
 | Escolha seu Supremo (escolha 1) | Açaí Tigela 1000ml | Grátis |
 | Escolha seu Supremo (escolha 1) | Açaí Roleta 1000ml | Grátis |
-| Deseja talheres? (escolha 1) | 1 talher | R$ 0,45 |
-| Deseja talheres? (escolha 1) | 2 talheres | R$ 0,90 |
-| Deseja talheres? (escolha 1) | 3 talheres | R$ 1,35 |
-| Deseja talheres? (escolha 1) | 4 talheres | R$ 1,80 |
-| Deseja talheres? (escolha 1) | 5 talheres | R$ 2,25 |
+| Deseja talheres? (escolha 1) | Quero talheres (até 5) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Destaques da Casa
@@ -118,10 +114,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Etapa | Opção | Preço |
 |---|---|---|
-| Deseja talheres? (escolha 1) | 1 talher | R$ 0,45 |
-| Deseja talheres? (escolha 1) | 2 talheres | R$ 0,90 |
-| Deseja talheres? (escolha 1) | 3 talheres | R$ 1,35 |
-| Deseja talheres? (escolha 1) | 4 talheres | R$ 1,80 |
+| Deseja talheres? (escolha 1) | Quero talheres (até 4) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Complementos e adicionais
