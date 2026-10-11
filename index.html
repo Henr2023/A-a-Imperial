@@ -52,6 +52,7 @@ section h3{margin:0;padding:22px 16px 6px;font-size:18px;font-weight:800}
 .load{padding:40px 16px;text-align:center;color:var(--muted)}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 .row.btn{cursor:pointer}.row.btn:hover{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+.row .old{color:var(--muted);font-weight:500;font-size:13px;margin-right:6px}
 .row .from{font-weight:500;color:var(--muted);font-size:12px;margin-right:4px}
 /* Monte o seu */
 .ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center}
@@ -149,6 +150,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     return A.cup;
   }
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function pr(s){return esc(s).replace(/~~([^~]*)~~/g,'<s class="old">$1</s>')}
   function slug(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 
   /* ===== MONTE SEU AÇAÍ =====
@@ -158,7 +160,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   var TALHERES=['Sim, quero talheres','Não precisa'];
   var MONTE=null,CFG={},cur=null;
   function brl(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
-  function money(s){var m=/R\$\s*([\d.]*\d,\d{2})/.exec(s||'');return m?parseFloat(m[1].replace(/\./g,'').replace(',','.')):0}
+  function money(s){var m=/R\$\s*([\d.]*\d,\d{2})/.exec((s||'').replace(/~~[^~]*~~/g,''));return m?parseFloat(m[1].replace(/\./g,'').replace(',','.')):0}
   function find(T,re){for(var k in T){if(re.test(k))return T[k]}return []}
   function buildMonte(T){
     var sizes=find(T,/^(monte o seu|copos imperiais)/i).map(function(c){var f=/\+\s*(\d+)\s*complemento/i.exec(c[1]);return{n:c[0].replace(/^copo imperial\s*/i,''),p:money(c[2]),free:f?+f[1]:3}});
@@ -259,8 +261,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
         html+=rows.map(function(c,ri){
           var op=OPT[c[0].toLowerCase()];
           if(op){var kk=slug(c[0]+' '+id+' '+ri);buildEtapas(c[0]+' '+id+' '+ri,[c].concat(op));
-            return '<div class="row btn" data-k="'+kk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+esc(c[2])+'</div></div><div class="th">'+art(c[0],title)+'</div></div>';}
-          return '<div class="row"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+esc(c[2])+'</div></div><div class="th">'+art(c[0],title)+'</div></div>';
+            return '<div class="row btn" data-k="'+kk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+pr(c[2])+'</div></div><div class="th">'+art(c[0],title)+'</div></div>';}
+          return '<div class="row"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+pr(c[2])+'</div></div><div class="th">'+art(c[0],title)+'</div></div>';
         }).join('');
       }
       html+='</section>';
