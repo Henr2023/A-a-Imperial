@@ -23,12 +23,43 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 ## Copos Imperiais
 
-| Item | Descrição | Preço |
+| Etapa | Opção | Preço |
 |---|---|---|
-| Copo Imperial 350ml | Açaí cremoso com granola, banana e leite condensado + 3 complementos grátis. No copo bolha. | R$ 21,99 |
-| Copo Imperial 400ml | Mesma receita, mais açaí + 3 complementos grátis. | R$ 24,99 |
-| Copo Imperial 500ml | Para quem tá com fome de verdade + 4 complementos grátis. | R$ 29,99 |
-| Copo Imperial 700ml | O maior copo da casa + 5 complementos grátis. | R$ 37,99 |
+| Monte seu Açaí | Açaí cremoso no copo bolha. Escolha o tamanho, o tipo, a calda, as frutas, os cremes e as guloseimas do seu jeito. | R$ 0,00 |
+| Qual o tamanho? (escolha 1) | 350ml | R$ 21,99 |
+| Qual o tamanho? (escolha 1) | 400ml | R$ 24,99 |
+| Qual o tamanho? (escolha 1) | 500ml | R$ 29,99 |
+| Qual o tamanho? (escolha 1) | 700ml | R$ 37,99 |
+| Qual seu tipo de açaí? (escolha 1) | Açaí Imperial Nobre | Grátis |
+| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango | R$ 5,99 |
+| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu | R$ 6,99 |
+| Qual seu tipo de açaí? (escolha 1) | Açaí c/ Cupuaçu | R$ 5,99 |
+| Qual sua calda? (até 1) | Leite condensado | Grátis |
+| Qual sua calda? (até 1) | Maracujá caseiro | Grátis |
+| Qual sua calda? (até 1) | Geleia de morango caseira | Grátis |
+| Qual sua calda? (até 1) | Chocolate | Grátis |
+| Qual sua fruta? (até 4) | Banana | Grátis |
+| Qual sua fruta? (até 4) | Abacaxi | Grátis |
+| Qual sua fruta? (até 4) | Uvas | R$ 0,99 |
+| Qual sua fruta? (até 4) | Morango | R$ 2,89 |
+| Qual sua fruta? (até 4) | Kiwi | R$ 3,89 |
+| Vamos de Cremes Artesanais? (até 3) | Creme de Nutella | R$ 8,99 |
+| Vamos de Cremes Artesanais? (até 3) | Creme Brigadeiro | R$ 6,99 |
+| Vamos de Cremes Artesanais? (até 3) | Creme de Ninho | R$ 6,99 |
+| Vamos de Cremes Artesanais? (até 3) | Creme de Maracujá | R$ 6,99 |
+| Vamos de Cremes Artesanais? (até 3) | Creme de Amendoim | R$ 5,99 |
+| Vamos de Cremes Artesanais? (até 3) | Creme de Morango | R$ 4,99 |
+| Guloseimas Imperiais (até 5) | Sonho de Valsa | R$ 2,49 |
+| Guloseimas Imperiais (até 5) | Ouro Branco | R$ 2,49 |
+| Guloseimas Imperiais (até 5) | Ovomaltine | R$ 2,89 |
+| Guloseimas Imperiais (até 5) | Kit Kat Clássico | R$ 2,89 |
+| Guloseimas Imperiais (até 5) | Kit Kat Branco | R$ 2,89 |
+| Guloseimas Imperiais (até 5) | Chocolate Branco c/ Cookies | R$ 2,89 |
+| Guloseimas Imperiais (até 5) | Chocolate Clássico c/ Ovomaltine | R$ 2,89 |
+| Guloseimas Imperiais (até 5) | Oreo | R$ 0,99 |
+| Guloseimas Imperiais (até 5) | Bis | R$ 1,99 |
+| Deseja talheres? (escolha 1) | Quero talheres | R$ 0,45 |
+| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Açaí Casal
 
