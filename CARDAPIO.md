@@ -21,7 +21,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Yin Yang Premium (2x 400ml) | Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | R$ 59,99 |
+| Yin Yang - O Equilíbrio Perfeito para seu Paladar | 2 copos de 400ml. Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | R$ 59,99 |
 | Coroa Imperial de Nutella (400ml) | Coroa de banana, leite condensado, leite em pó, amendoim e Nutella generosa no centro. Chega bonito, volta vazio. | R$ 36,99 |
 | Mini Roleta (1 pessoa) | 4 divisões: banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
 
@@ -84,7 +84,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 |---|---|---|
 | Duplo Imperial (2x 300ml) | Dois copos com leite condensado, paçoca, leite em pó e banana. Dá pra trocar os complementos. | R$ 29,99 |
 | Black & White (2x 350ml) | Black: brigadeiro de colher, calda de chocolate e banana. White: creme de Ninho, Bis, paçoca e morango. | R$ 49,99 |
-| Yin Yang Premium (2x 400ml) | Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | R$ 59,99 |
+| Yin Yang - O Equilíbrio Perfeito para seu Paladar | 2 copos de 400ml. Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | R$ 59,99 |
 | Açaí Casal (700ml) | Um copo grande para dividir, com até 5 complementos grátis do seu jeito. | R$ 44,99 |
 
 ## Para Compartilhar
@@ -113,6 +113,16 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Água sem gás 500ml | Gelada. | R$ 5,99 |
 | Água com gás 500ml | Gelada. | R$ 5,99 |
 | Red Bull 250ml | Energético, gelado. | R$ 15,99 |
+
+## Opções: Yin Yang - O Equilíbrio Perfeito para seu Paladar
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Deseja talheres? (escolha 1) | 1 talher | R$ 0,45 |
+| Deseja talheres? (escolha 1) | 2 talheres | R$ 0,90 |
+| Deseja talheres? (escolha 1) | 3 talheres | R$ 1,35 |
+| Deseja talheres? (escolha 1) | 4 talheres | R$ 1,80 |
+| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Complementos e adicionais
 
