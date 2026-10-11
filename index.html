@@ -252,11 +252,11 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
       var id=slug(title),rows=T[title];
       tabs+='<a href="#'+id+'">'+esc(title)+'</a>';
       html+='<section id="'+id+'"><h3>'+esc(title)+'</h3>';
-      var bk=/^(monte o seu|copos imperiais)/i.test(title)&&MONTE?'monte':(CFG[id]?id:null);
+      var bk=CFG[id]?id:(/^(monte o seu|copos imperiais)/i.test(title)&&MONTE?'monte':null);
       if(bk==='monte'){
         html+='<div class="row btn" data-k="monte" role="button" tabindex="0"><div class="info"><h4>Monte seu Açaí</h4><p>Escolha o tipo, o tamanho, caldas, frutas, cremes e guloseimas do seu jeito.</p><div class="pr"><span class="from">a partir de</span>'+brl(MONTE.min)+'</div></div><div class="th">'+A.cup+'</div></div>';
       } else if(bk){var b=CFG[bk];
-        html+='<div class="row btn" data-k="'+bk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(b.name)+'</h4><p>'+esc(b.sub)+'</p><div class="pr">'+(b.base?brl(b.base):'')+'</div></div><div class="th">'+art(b.name,title)+'</div></div>';
+        html+='<div class="row btn" data-k="'+bk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(b.name)+'</h4><p>'+esc(b.sub)+'</p><div class="pr">'+(b.base?brl(b.base):(b.groups[0]&&b.groups[0].opts.length?'<span class="from">a partir de</span>'+brl(Math.min.apply(null,b.groups[0].opts.map(function(o){return o[1]}))):''))+'</div></div><div class="th">'+art(b.name,title)+'</div></div>';
       } else {
         html+=rows.map(function(c,ri){
           var op=OPT[c[0].toLowerCase()];
