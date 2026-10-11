@@ -58,7 +58,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Guloseimas Imperiais (até 5) | Chocolate Clássico c/ Ovomaltine | R$ 2,89 |
 | Guloseimas Imperiais (até 5) | Oreo | R$ 0,99 |
 | Guloseimas Imperiais (até 5) | Bis | R$ 1,99 |
-| Deseja talheres? (escolha 1) | Quero talheres | R$ 0,45 |
+| Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Açaí Casal
