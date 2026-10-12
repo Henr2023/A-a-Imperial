@@ -21,6 +21,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Açaí Coroa Imperial de Nutella | 400ml. Coroa de banana, leite condensado, leite em pó, amendoim e Nutella generosa no centro. Chega bonito, volta vazio. | R$ 36,99 |
 | Açaí Trufado Imperial |  | ~~R$ 45,00~~ R$ 37,00 |
 | Mini Roleta (1 pessoa) | 4 divisões: banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
+| Combo Black & White |  | ~~R$ 60,00~~ R$ 53,99 |
 
 ## Copos Imperiais
 
@@ -175,6 +176,13 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 |---|---|---|
 | Deseja palitos? (escolha 1) | Quero palitos (até 2) | Grátis |
 | Deseja palitos? (escolha 1) | Não quero palitos | Grátis |
+
+## Opções: Combo Black & White
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Deseja talheres? (escolha 1) | Quero talheres (até 4) | R$ 0,45 |
+| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Complementos e adicionais
 
