@@ -97,20 +97,10 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Quero talheres (até 4) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
-## Açaís Assinatura
-
-| Item | Descrição | Preço |
-|---|---|---|
-| Açaí Coroa Imperial de Nutella | 400ml. Coroa de banana, leite condensado, leite em pó, amendoim e Nutella generosa no centro. | R$ 36,99 |
-| Mini Roleta (1 pessoa) | Banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
-| Coração Imperial | Caixa-coração com morango, uva verde, creme de Ninho e brigadeiro com Ovomaltine em camadas. Perfeito pra presentear. | R$ 29,99 |
-
 ## Combos para 2
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Duplo Imperial (2x 300ml) | Dois copos com leite condensado, paçoca, leite em pó e banana. Dá pra trocar os complementos. | R$ 29,99 |
-| Black & White | 2 copos de 400ml. Black: brigadeiro de colher, calda de chocolate e banana. White: creme de Ninho, Bis, paçoca e morango. | R$ 53,00 |
 | Yin Yang - O Equilíbrio Perfeito para seu Paladar | 2 copos de 400ml. Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | ~~R$ 65,99~~ R$ 59,00 |
 | Açaí Casal (700ml) | Um copo grande para dividir, com até 5 complementos grátis do seu jeito. | R$ 44,99 |
 
@@ -149,13 +139,6 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Opções: Açaí Coroa Imperial de Nutella
-
-| Etapa | Opção | Preço |
-|---|---|---|
-| Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
-| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
-
-## Opções: Black & White
 
 | Etapa | Opção | Preço |
 |---|---|---|
