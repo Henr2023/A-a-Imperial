@@ -162,6 +162,20 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
+## Opções: Coração Imperial
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Deseja palitos? (escolha 1) | Quero palitos (até 2) | Grátis |
+| Deseja palitos? (escolha 1) | Não quero palitos | Grátis |
+
+## Opções: Roletinha Imperial
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Deseja palitos? (escolha 1) | Quero palitos (até 2) | Grátis |
+| Deseja palitos? (escolha 1) | Não quero palitos | Grátis |
+
 ## Complementos e adicionais
 
 | Grupo | Opções | Preço |
