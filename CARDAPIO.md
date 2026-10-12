@@ -159,6 +159,8 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Qual sabor da sua Trufa? (escolha 1) | Amendoim | Grátis |
 | Qual sabor da sua Trufa? (escolha 1) | Maracujá | Grátis |
 | Qual sabor da sua Trufa? (escolha 1) | Morango | Grátis |
+| Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
+| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Complementos e adicionais
 
