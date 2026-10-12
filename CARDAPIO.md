@@ -22,6 +22,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Açaí Trufado Imperial |  | ~~R$ 45,00~~ R$ 37,00 |
 | Mini Roleta (1 pessoa) | 4 divisões: banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
 | Combo Black & White |  | ~~R$ 60,00~~ R$ 53,99 |
+| Shake de Açaí |  | ~~R$ 25,99~~ R$ 19,99 |
 
 ## Copos Imperiais
 
@@ -183,6 +184,19 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 |---|---|---|
 | Deseja talheres? (escolha 1) | Quero talheres (até 4) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
+
+## Opções: Shake de Açaí
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Qual seu sabor? (escolha 1) | Nutella | R$ 8,99 |
+| Qual seu sabor? (escolha 1) | Ninho | R$ 6,99 |
+| Qual seu sabor? (escolha 1) | Brigadeiro | R$ 6,99 |
+| Qual seu sabor? (escolha 1) | Amendoim | R$ 6,99 |
+| Qual seu sabor? (escolha 1) | Maracujá | R$ 6,99 |
+| Qual seu sabor? (escolha 1) | Morango | Grátis |
+| Deseja canudo? (escolha 1) | Quero canudo (até 1) | Grátis |
+| Deseja canudo? (escolha 1) | Não quero canudo | Grátis |
 
 ## Complementos e adicionais
 
