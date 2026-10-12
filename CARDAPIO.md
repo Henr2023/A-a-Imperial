@@ -19,6 +19,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 |---|---|---|
 | Yin Yang - O Equilíbrio Perfeito para seu Paladar | 2 copos de 400ml. Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | ~~R$ 65,99~~ R$ 59,00 |
 | Açaí Coroa Imperial de Nutella | 400ml. Coroa de banana, leite condensado, leite em pó, amendoim e Nutella generosa no centro. Chega bonito, volta vazio. | R$ 36,99 |
+| Açaí Trufado Imperial |  | ~~R$ 45,00~~ R$ 37,00 |
 | Mini Roleta (1 pessoa) | 4 divisões: banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
 
 ## Copos Imperiais
@@ -143,6 +144,21 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Escolha seu copo (escolha 1) | Escondidinho de Uvas | R$ 2,00 |
 | Escolha seu copo (escolha 1) | Chocolate ao Morango | Grátis |
 | Escolha seu copo (escolha 1) | Ninho com Morango | Grátis |
+
+## Opções: Açaí Trufado Imperial
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Qual seu creme? (escolha 1) | Ninho | Grátis |
+| Qual seu creme? (escolha 1) | Brigadeiro | Grátis |
+| Qual seu creme? (escolha 1) | Amendoim | Grátis |
+| Qual seu creme? (escolha 1) | Maracujá | Grátis |
+| Qual seu creme? (escolha 1) | Morango | Grátis |
+| Qual sabor da sua Trufa? (escolha 1) | Ninho | Grátis |
+| Qual sabor da sua Trufa? (escolha 1) | Brigadeiro | Grátis |
+| Qual sabor da sua Trufa? (escolha 1) | Amendoim | Grátis |
+| Qual sabor da sua Trufa? (escolha 1) | Maracujá | Grátis |
+| Qual sabor da sua Trufa? (escolha 1) | Morango | Grátis |
 
 ## Complementos e adicionais
 
