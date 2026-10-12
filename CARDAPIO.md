@@ -97,6 +97,13 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Quero talheres (até 4) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
+## Especiais Gourmet
+
+| Item | Descrição | Preço |
+|---|---|---|
+| Coração Imperial |  | R$ 27,00 |
+| Roletinha Imperial |  | R$ 29,99 |
+
 ## Copos da Felicidade (sem açaí)
 
 | Item | Descrição | Preço |
