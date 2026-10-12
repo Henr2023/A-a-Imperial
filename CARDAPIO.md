@@ -198,6 +198,18 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja canudo? (escolha 1) | Quero canudo (até 1) | Grátis |
 | Deseja canudo? (escolha 1) | Não quero canudo | Grátis |
 
+## Opções: Manga Louca (500ml)
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Quais complementos? (até 5) | Sal | Grátis |
+| Quais complementos? (até 5) | Limão | Grátis |
+| Quais complementos? (até 5) | Páprica Picante | Grátis |
+| Quais complementos? (até 5) | Limão Pepe | Grátis |
+| Quais complementos? (até 5) | Pimenta-do-reino | Grátis |
+| Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
+| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
+
 ## Complementos e adicionais
 
 | Grupo | Opções | Preço |
