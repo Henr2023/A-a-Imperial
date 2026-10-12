@@ -97,12 +97,6 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Quero talheres (até 4) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
-## Combos para 2
-
-| Item | Descrição | Preço |
-|---|---|---|
-| Yin Yang - O Equilíbrio Perfeito para seu Paladar | 2 copos de 400ml. Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | ~~R$ 65,99~~ R$ 59,00 |
-
 ## Para Compartilhar
 
 | Item | Descrição | Preço |
