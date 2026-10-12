@@ -102,7 +102,6 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Item | Descrição | Preço |
 |---|---|---|
 | Yin Yang - O Equilíbrio Perfeito para seu Paladar | 2 copos de 400ml. Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | ~~R$ 65,99~~ R$ 59,00 |
-| Açaí Casal (700ml) | Um copo grande para dividir, com até 5 complementos grátis do seu jeito. | R$ 44,99 |
 
 ## Para Compartilhar
 
