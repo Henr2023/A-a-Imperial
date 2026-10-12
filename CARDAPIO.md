@@ -101,10 +101,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Ninho Fruit | Creme de Ninho, brigadeiro com Ovomaltine, morango, uva, amendoim e Sonho de Valsa ou Ouro Branco. | R$ 21,99 |
-| Ninho com Morango | Creme de Ninho, creme de morango, morango, uva e pitanga de chocolate. | R$ 19,99 |
-| Morango ao Chocolate | Creme de morango, creme de chocolate, morango, uva e Oreo. | R$ 19,99 |
-| Escondidinho de Uva | Uvas escondidas entre creme de Ninho e chocolate, com granulado branco. | R$ 18,00 |
+| Mut-Felicidade | Escolha seu copo da felicidade: Ninho Fruit, Escondidinho de Uvas, Chocolate ao Morango ou Ninho com Morango. | A partir de R$ 19,99 |
 | Manga Louca (500ml) | Manga verde ou meio madura com sal, limão, pimenta-do-reino ou calabresa. | R$ 16,99 |
 
 ## Bebidas s/ Álcool
@@ -130,6 +127,15 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 |---|---|---|
 | Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
+
+## Opções: Mut-Felicidade
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Escolha seu copo (escolha 1) | Ninho Fruit | R$ 4,00 |
+| Escolha seu copo (escolha 1) | Escondidinho de Uvas | R$ 2,00 |
+| Escolha seu copo (escolha 1) | Chocolate ao Morango | Grátis |
+| Escolha seu copo (escolha 1) | Ninho com Morango | Grátis |
 
 ## Complementos e adicionais
 
