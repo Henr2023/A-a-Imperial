@@ -97,13 +97,6 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Quero talheres (até 4) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
-## Para Compartilhar
-
-| Item | Descrição | Preço |
-|---|---|---|
-| Açaí Roleta 1L (até 4 pessoas) | Morango, banana, leite condensado, amendoim, leite em pó e creme de maracujá artesanal. | R$ 59,99 |
-| Tigela Imperial 1,4L (até 5 pessoas) | Brigadeiro black, creme de Ninho, banana, calda de maracujá, leite em pó e granola. O maior da casa. | R$ 79,99 |
-
 ## Copos da Felicidade (sem açaí)
 
 | Item | Descrição | Preço |
