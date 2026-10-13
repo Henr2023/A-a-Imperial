@@ -210,6 +210,13 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
+## Opções: Mini Roleta (1 pessoa)
+
+| Etapa | Opção | Preço |
+|---|---|---|
+| Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
+| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
+
 ## Complementos e adicionais
 
 | Grupo | Opções | Preço |
