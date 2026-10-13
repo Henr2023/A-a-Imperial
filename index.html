@@ -33,6 +33,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-
 .badges{display:flex;gap:8px;overflow-x:auto;padding:0 16px 14px;scrollbar-width:none}
 .badge{flex:none;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12px;color:var(--muted)}
 .badge b{display:block;color:var(--ink);font-size:13px}
+/* Pedidos numerados */
+.picks{display:flex;gap:10px;overflow-x:auto;padding:4px 16px 14px;scrollbar-width:none}
+.picks::-webkit-scrollbar{display:none}
+.pick{flex:none;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px 6px 6px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.pick:hover{background:color-mix(in srgb,var(--gold) 12%,transparent)}
+.pick i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#2a0634;display:grid;place-items:center;font-weight:800;font-size:14px}
 /* Abas */
 .tabs{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);display:flex;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar,.badges::-webkit-scrollbar{display:none}
@@ -104,6 +110,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     <div class="badge"><b>Copo bolha</b>nossa marca</div>
     <div class="badge"><b>Cremes artesanais</b>Ninho, Black, maracujá</div>
     <div class="badge"><b>Complementos grátis</b>em todo copo</div>
+  </div>
+  <div class="picks" id="picks" aria-label="Mais pedidos">
+    <button type="button" class="pick" data-n="Monte seu Açaí"><i>1</i>Monte seu Açaí</button>
+    <button type="button" class="pick" data-n="Açaí Casal"><i>2</i>Açaí Casal</button>
+    <button type="button" class="pick" data-n="Açaí Trufado"><i>3</i>Açaí Trufado</button>
+    <button type="button" class="pick" data-n="Yin Yang"><i>4</i>Yin Yang</button>
+    <button type="button" class="pick" data-n="Combo Black"><i>5</i>Combo Black &amp; White</button>
   </div>
   <nav class="tabs" id="tabs"></nav>
   <main id="menu"><div class="load">Carregando cardápio…</div></main>
@@ -276,5 +289,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     document.querySelectorAll('.row.btn').forEach(function(mb){var k=mb.getAttribute('data-k');mb.onclick=function(){openB(k)};mb.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openB(k)}}});
   }).catch(function(){document.getElementById('menu').innerHTML='<div class="load">Não foi possível carregar o cardápio agora.</div>'});
 })();
+</script>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.pick');if(!b)return;var n=b.getAttribute('data-n').toLowerCase();var r=[].slice.call(document.querySelectorAll('.row.btn')).filter(function(x){var h=x.querySelector('h4');return h&&h.textContent.toLowerCase().indexOf(n)===0})[0];if(r)r.click()});
 </script>
 </body></html>
