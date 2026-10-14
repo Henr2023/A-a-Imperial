@@ -86,6 +86,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 .sh-f .tot{flex:1}.sh-f .tot small{display:block;color:var(--muted);font-size:12px}.sh-f .tot b{font-size:18px}
 .go{border:0;border-radius:10px;background:var(--acai);color:#fff;font-weight:700;padding:13px 18px;cursor:pointer;font:inherit;font-weight:700}
 .go:disabled{opacity:.45;cursor:not-allowed}
+.go.wa{background:#1f9e55}.go.alt{background:var(--bg);color:var(--ink);padding:13px 14px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1f1f1f;color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:60}
 /* Carrinho */
 .row .th{position:relative}
@@ -185,7 +186,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
         <label>Observações<textarea id="fObs" rows="2" placeholder="Ex: caprichar no leite condensado"></textarea></label>
       </div>
     </div>
-    <div class="sh-f"><div class="tot"><small>Total</small><b id="cTot">R$ 0,00</b></div><button class="go" id="cGo">Imprimir comanda</button></div>
+    <div class="sh-f"><div class="tot"><small>Total</small><b id="cTot">R$ 0,00</b></div><button class="go alt" id="cPr" aria-label="Imprimir comanda" title="Imprimir comanda">🖨</button><button class="go wa" id="cGo">Enviar pelo WhatsApp</button></div>
   </div>
 </div>
 <div id="comanda"></div>
@@ -320,7 +321,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   function renderC(){
     var n=CART.reduce(function(s,it){return s+it.q},0);
     $('cbar').hidden=!n||!cov.hidden;document.querySelector('.app').classList.toggle('has-cart',!!n);
-    $('cN').textContent=n;$('cT').textContent=brl(cTotal());$('cTot').textContent=brl(cTotal());$('cGo').disabled=!n;
+    $('cN').textContent=n;$('cT').textContent=brl(cTotal());$('cTot').textContent=brl(cTotal());$('cGo').disabled=$('cPr').disabled=!n;
     $('cL').innerHTML=n?CART.map(function(it,i){return '<div class="ci"><div class="info"><h4>'+esc(it.name)+'</h4>'+(it.det.length?'<p>'+esc(it.det.join('\n'))+'</p>':'')+'<div class="pr">'+brl(it.p*it.q)+'</div></div><span class="qty"><button type="button" class="qm" data-i="'+i+'" aria-label="'+(it.q>1?'Menos':'Remover')+'">'+(it.q>1?'−':'×')+'</button><b>'+it.q+'</b><button type="button" class="qp" data-i="'+i+'" aria-label="Mais">+</button></span></div>'}).join(''):'<div class="empty">Seu carrinho está vazio.</div>';
     $('cUw').hidden=!DRINKS.length;
     $('cU').innerHTML=DRINKS.map(function(d,i){return '<button type="button" class="up" data-u="'+i+'" aria-label="Adicionar '+esc(d.n)+'"><span class="th">'+d.a+'</span><span class="t">'+esc(d.n)+'<b>'+brl(d.p)+'</b></span><span class="add" aria-hidden="true">+</span></button>'}).join('');
@@ -337,18 +338,36 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   function syncF(){$('fEndW').hidden=document.querySelector('[name=fTipo]:checked').value!=='Entrega';$('fTrW').hidden=$('fPag').value!=='Dinheiro'}
   $('fm').addEventListener('change',syncF);
   function val(id){return $(id).value.trim()}
+  var WHATS='5561993293949'; /* WhatsApp da loja que recebe os pedidos */
+  function pedido(){
+    var o={nome:val('fNome'),tipo:document.querySelector('[name=fTipo]:checked').value,end:val('fEnd'),pag:val('fPag'),tr:val('fTr'),obs:val('fObs'),d:new Date()};
+    if(!o.nome){toast('Informe seu nome');$('fNome').focus();return null}
+    if(o.tipo==='Entrega'&&!o.end){toast('Informe o endereço de entrega');$('fEnd').focus();return null}
+    o.dt=o.d.toLocaleDateString('pt-BR')+' '+o.d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    o.pg=o.pag+(o.pag==='Dinheiro'&&o.tr?' (troco p/ R$ '+o.tr+')':'');
+    return o;
+  }
+  function limpa(msg){CART=[];saveC();$('fObs').value='';closeC();toast(msg)}
   $('cGo').onclick=function(){
-    var nome=val('fNome'),tipo=document.querySelector('[name=fTipo]:checked').value,end=val('fEnd'),pag=val('fPag'),tr=val('fTr'),obs=val('fObs');
-    if(!nome){toast('Informe seu nome');$('fNome').focus();return}
-    if(tipo==='Entrega'&&!end){toast('Informe o endereço de entrega');$('fEnd').focus();return}
+    var o=pedido();if(!o)return;
+    var cod=String(Date.now()).slice(-4);
+    var t='*NOVO PEDIDO #'+cod+' · Açaí Imperial*\n'+o.dt+'\n\n*'+o.tipo.toUpperCase()+'*\nCliente: '+o.nome+(o.tipo==='Entrega'?'\nEndereço: '+o.end:'')+'\n\n'+
+      CART.map(function(it){return '*'+it.q+'x '+it.name+'* · '+brl(it.p*it.q)+it.det.map(function(x){return '\n   - '+x}).join('')}).join('\n')+
+      '\n\n*TOTAL: '+brl(cTotal())+'*\nPagamento: '+o.pg+(o.obs?'\nObs: '+o.obs:'');
+    var url='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
+    if(!window.open(url,'_blank'))location.href=url;
+    limpa('Pedido #'+cod+' enviado pelo WhatsApp');
+  };
+  $('cPr').onclick=function(){
+    var o=pedido();if(!o)return;
     var num=1;try{num=(+localStorage.getItem('ai-num')||0)+1;localStorage.setItem('ai-num',num)}catch(e){}
-    var d=new Date(),L=function(a,b){return '<div class="l"><span>'+a+'</span><span>'+b+'</span></div>'};
-    $('comanda').innerHTML='<h1>AÇAÍ IMPERIAL</h1><div class="c">Comanda #'+String(num).padStart(3,'0')+'<br>'+d.toLocaleDateString('pt-BR')+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'</div><hr>'+
-      '<div class="big">'+esc(tipo.toUpperCase())+'</div>Cliente: '+esc(nome)+(tipo==='Entrega'?'<br>Endereço: '+esc(end):'')+'<hr>'+
+    var L=function(a,b){return '<div class="l"><span>'+a+'</span><span>'+b+'</span></div>'};
+    $('comanda').innerHTML='<h1>AÇAÍ IMPERIAL</h1><div class="c">Comanda #'+String(num).padStart(3,'0')+'<br>'+o.dt+'</div><hr>'+
+      '<div class="big">'+esc(o.tipo.toUpperCase())+'</div>Cliente: '+esc(o.nome)+(o.tipo==='Entrega'?'<br>Endereço: '+esc(o.end):'')+'<hr>'+
       CART.map(function(it){return L('<b>'+it.q+'x '+esc(it.name)+'</b>',brl(it.p*it.q))+it.det.map(function(x){return '<div class="d">- '+esc(x)+'</div>'}).join('')}).join('')+'<hr>'+
-      '<div class="big">'+L('TOTAL',brl(cTotal()))+'</div>Pagamento: '+esc(pag)+(pag==='Dinheiro'&&tr?' (troco p/ R$ '+esc(tr)+')':'')+(obs?'<hr>Obs: '+esc(obs):'')+'<hr><div class="c">Obrigado pela preferência!</div>';
+      '<div class="big">'+L('TOTAL',brl(cTotal()))+'</div>Pagamento: '+esc(o.pg)+(o.obs?'<hr>Obs: '+esc(o.obs):'')+'<hr><div class="c">Obrigado pela preferência!</div>';
     window.print();
-    CART=[];saveC();$('fObs').value='';closeC();toast('Comanda #'+num+' enviada para impressão');
+    limpa('Comanda #'+num+' enviada para impressão');
   };
   renderC();
 
