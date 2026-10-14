@@ -352,7 +352,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     var o=pedido();if(!o)return;
     var cod=String(Date.now()).slice(-4);
     var t='*NOVO PEDIDO #'+cod+' · Açaí Imperial*\n'+o.dt+'\n\n*'+o.tipo.toUpperCase()+'*\nCliente: '+o.nome+(o.tipo==='Entrega'?'\nEndereço: '+o.end:'')+'\n\n'+
-      CART.map(function(it){return '*'+it.q+'x '+it.name+'* · '+brl(it.p*it.q)+it.det.map(function(x){return '\n   - '+x}).join('')}).join('\n')+
+      CART.map(function(it){return '*'+it.q+'x '+it.name+'* · '+brl(it.p*it.q)+it.det.map(function(x){return '\n   '+x.replace(/^[^:]*:\s*/,'')}).join('')}).join('\n')+
       '\n\n*TOTAL: '+brl(cTotal())+'*\nPagamento: '+o.pg+(o.obs?'\nObs: '+o.obs:'');
     var url='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
     if(!window.open(url,'_blank'))location.href=url;
