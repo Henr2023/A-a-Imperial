@@ -146,6 +146,8 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Escolha seu copo (escolha 1) | Escondidinho de Uvas | R$ 2,00 |
 | Escolha seu copo (escolha 1) | Chocolate ao Morango | Grátis |
 | Escolha seu copo (escolha 1) | Ninho com Morango | Grátis |
+| Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
+| Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
 ## Opções: Açaí Trufado Imperial
 
