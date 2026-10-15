@@ -54,7 +54,7 @@ section h3{margin:0;padding:22px 16px 6px;font-size:18px;font-weight:800}
 .row p{margin:0;color:var(--muted);font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .row .pr{margin-top:8px;font-weight:700;font-size:15px}
 .th{width:96px;height:96px;flex:none;border-radius:10px;overflow:hidden}
-.th svg{width:100%;height:100%;display:block}
+.th svg,.th img{width:100%;height:100%;display:block}.th img{object-fit:cover}
 .tip{margin:20px 16px 0;padding:12px 14px;border-radius:10px;background:color-mix(in srgb,var(--gold) 18%,transparent);font-size:13px}
 .load{padding:40px 16px;text-align:center;color:var(--muted)}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
@@ -200,7 +200,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     drink:'<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1565c0"/><circle cx="80" cy="80" r="30" fill="#1e88e5"/><path d="M32 28 L68 28 L63 88 L37 88Z" fill="#e3f2fd" opacity=".9"/><path d="M34 44 L66 44 L63 88 L37 88Z" fill="#7a2d8f"/><rect x="54" y="12" width="5" height="40" rx="2" fill="#f4b400" transform="rotate(12 56 32)"/></svg>',
     plus:'<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#f4b400"/><circle cx="50" cy="50" r="28" fill="#fff"/><path d="M50 36 V64 M36 50 H64" stroke="#4b1660" stroke-width="8" stroke-linecap="round"/></svg>'
   };
+  /* Fotos: cadastradas no painel do dono (admin.html), ficam em fotos.json { "Nome do produto": "fotos/arquivo.jpg" } */
+  var PHOTOS={};
   function art(name,cat){
+    if(PHOTOS[name])return '<img src="'+esc(PHOTOS[name])+'" alt="'+esc(name)+'" loading="lazy">';
     var s=(name+' '+cat).toLowerCase();
     if(/complement|adiciona/.test(cat.toLowerCase()))return A.plus;
     if(/cora/.test(s))return A.heart;
@@ -356,7 +359,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   renderC();
 
   /* Lê o CARDAPIO.md do próprio repositório: editou o .md, o site atualiza sozinho */
-  fetch('CARDAPIO.md?v='+Date.now()).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(md){
+  fetch('fotos.json?v='+Date.now()).then(function(r){return r.ok?r.json():{}}).catch(function(){return{}}).then(function(P){PHOTOS=P&&typeof P==='object'?P:{};return fetch('CARDAPIO.md?v='+Date.now())}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(md){
     var secs=md.split(/^## /m).slice(1),tabs='',html='',T={},H={};
     secs.forEach(function(s){
       var lines=s.trim().split('\n');H[lines[0].trim()]=(lines.filter(function(l){return l.charAt(0)==='|'})[0]||'').toLowerCase();
@@ -371,7 +374,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
       html+='<section id="'+id+'"><h3>'+esc(title)+'</h3>';
       var bk=CFG[id]?id:(/^(monte o seu|copos imperiais)/i.test(title)&&MONTE?'monte':null);
       if(bk==='monte'){
-        html+=rowFx(rows[0]||{},'<div class="row btn" data-k="monte" role="button" tabindex="0"><div class="info"><h4>Monte seu Açaí</h4><p>Escolha o tipo, o tamanho, caldas, frutas, cremes e guloseimas do seu jeito.</p><div class="pr"><span class="from">a partir de</span>'+brl(MONTE.min)+'</div></div><div class="th">'+A.cup+'</div></div>');
+        html+=rowFx(rows[0]||{},'<div class="row btn" data-k="monte" role="button" tabindex="0"><div class="info"><h4>Monte seu Açaí</h4><p>Escolha o tipo, o tamanho, caldas, frutas, cremes e guloseimas do seu jeito.</p><div class="pr"><span class="from">a partir de</span>'+brl(MONTE.min)+'</div></div><div class="th">'+(PHOTOS['Monte seu Açaí']?art('Monte seu Açaí',title):A.cup)+'</div></div>');
       } else if(bk){var b=CFG[bk];
         html+=rowFx(b,'<div class="row btn" data-k="'+bk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(b.name)+'</h4><p>'+esc(b.sub)+'</p><div class="pr">'+(b.base?brl(b.base):(b.groups[0]&&b.groups[0].opts.length?'<span class="from">a partir de</span>'+brl(Math.min.apply(null,b.groups[0].opts.map(function(o){return o[1]}))):''))+'</div></div><div class="th">'+art(b.name,title)+'</div></div>');
       } else {
