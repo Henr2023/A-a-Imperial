@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel do dono — Açaí Imperial</title>
+<style>
+:root{--bg:#f5f5f7;--card:#fff;--ink:#1d1d1f;--muted:#6e6e73;--line:#e5e5ea;--acai:#4b1660;--acai2:#7a2d8f;--ok:#1f9e55;--bad:#c0392b}
+@media (prefers-color-scheme:dark){:root{--bg:#121212;--card:#1d1d1f;--ink:#f5f5f7;--muted:#a1a1a6;--line:#2c2c2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.app{max-width:720px;margin:0 auto;padding-bottom:110px}
+header{background:var(--acai);color:#fff;padding:18px 16px}
+header h1{margin:0;font-size:20px}header p{margin:4px 0 0;opacity:.85;font-size:13px}
+header a{color:#fff;font-weight:700;font-size:13px;display:inline-block;margin-top:10px}
+.box{margin:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.box summary{cursor:pointer;font-weight:700}
+.box p{margin:8px 0;color:var(--muted);font-size:13px}
+.box ol{margin:6px 0 10px;padding-left:20px;color:var(--muted);font-size:13px}
+.row2{display:flex;gap:8px}
+input[type=password],input[type=search]{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:10px 14px;background:var(--acai2);color:#fff;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}button.sec{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+.tools{display:flex;gap:8px;margin:12px 16px}.tools input{flex:1}
+details.sec{margin:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+details.sec>summary{padding:12px 14px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowrap}
+.it{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line)}
+.it .t{flex:1;min-width:0}.it .t b{font-weight:600;display:block;overflow-wrap:anywhere}.it .t small{color:var(--muted);font-size:12px}
+.it.prod .t b{font-weight:800}.it.out .t b{color:var(--bad);text-decoration:line-through}
+.it.chg{background:color-mix(in srgb,var(--gold,#f4b400) 14%,transparent)}
+.sw{position:relative;flex:none;width:92px;height:34px}
+.sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%;z-index:2}
+.sw span{position:absolute;inset:0;border-radius:999px;background:var(--bad);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.sw input:checked+span{background:var(--ok)}
+.sw input:focus-visible+span{outline:3px solid var(--acai2);outline-offset:2px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px;z-index:5}
+.bar .in{max-width:720px;margin:0 auto;display:flex;gap:10px;align-items:center}.bar .in span{flex:1;font-size:13px;color:var(--muted)}
+.msg{margin:12px 16px;padding:10px 14px;border-radius:10px;font-size:14px}
+.msg.ok{background:color-mix(in srgb,var(--ok) 16%,transparent)}.msg.err{background:color-mix(in srgb,var(--bad) 16%,transparent)}
+.load{padding:40px 16px;text-align:center;color:var(--muted)}
+</style></head><body>
+<div class="app">
+<header><h1>Painel do dono · Açaí Imperial</h1><p>Marque o que está esgotado e salve. O cardápio dos clientes atualiza em cerca de 1 minuto.</p><a href="./">← Ver cardápio dos clientes</a></header>
+
+<details class="box" id="conn"><summary id="connS">Conexão para salvar</summary>
+<p>Para salvar, esta página precisa de uma chave do GitHub (feita uma vez só, fica guardada neste aparelho):</p>
+<ol><li>GitHub → Settings → Developer settings → <b>Fine-grained tokens</b> → Generate new token.</li>
+<li>Em <i>Repository access</i> escolha só o repositório <b>A-a-Imperial</b>.</li>
+<li>Em <i>Permissions → Contents</i> marque <b>Read and write</b>. Gere e copie a chave.</li></ol>
+<div class="row2"><input type="password" id="tok" placeholder="Cole a chave aqui" autocomplete="off"><button id="tokOk" type="button">Guardar</button></div>
+<p id="tokMsg"></p></details>
+
+<div class="tools"><input type="search" id="q" placeholder="Buscar produto ou complemento…" aria-label="Buscar"><button class="sec" id="onlyOut" type="button">Só esgotados</button></div>
+<div id="msg"></div>
+<div id="list"><div class="load">Carregando cardápio…</div></div>
+</div>
+<div class="bar"><div class="in"><span id="cnt">Nenhuma alteração</span><button class="sec" id="undo" type="button" disabled>Desfazer</button><button id="save" type="button" disabled>Salvar</button></div></div>
+
+<script>
+(function(){
+  var REPO='Henr2023/A-a-Imperial',FILE='CARDAPIO.md',BR='main',API='https://api.github.com/repos/'+REPO+'/contents/'+FILE;
+  var OUTRE=/\s*\[esgotado\]\s*/i;
+  var lines=[],sha='',T=[],secs=[],TOKEN='';
+  function $(i){return document.getElementById(i)}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  try{TOKEN=localStorage.getItem('ai-gh')||''}catch(e){}
+  function msg(t,k){$('msg').innerHTML=t?'<div class="msg '+(k||'ok')+'">'+esc(t)+'</div>':''}
+  function syncTok(){$('connS').textContent=TOKEN?'Conexão para salvar: pronta ✓':'Conexão para salvar: falta configurar';$('conn').open=!TOKEN;$('tokMsg').textContent=TOKEN?'Chave guardada neste aparelho.':''}
+  $('tokOk').onclick=function(){var v=$('tok').value.trim();if(!v)return;TOKEN=v;try{localStorage.setItem('ai-gh',v)}catch(e){}$('tok').value='';syncTok();upd()};
+
+  function b64d(b){var s=atob(b.replace(/\s/g,'')),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new TextDecoder().decode(u)}
+  function b64e(t){var u=new TextEncoder().encode(t),s='';for(var i=0;i<u.length;i+=8192)s+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(s)}
+  function hdrs(){var h={'Accept':'application/vnd.github+json'};if(TOKEN)h['Authorization']='Bearer '+TOKEN;return h}
+
+  /* Lê o CARDAPIO.md e monta a lista de itens que podem ser marcados como esgotado */
+  function parse(md){
+    lines=md.split('\n');T=[];secs=[];var cur=null,ti=0,hdr='';
+    lines.forEach(function(l,i){
+      if(/^## /.test(l)){cur={title:l.slice(3).trim(),items:[]};secs.push(cur);ti=0;hdr='';return}
+      if(!cur||l.charAt(0)!=='|')return;
+      ti++;if(ti===1){hdr=l.toLowerCase();return}if(ti===2)return;
+      var c=l.split('|').slice(1,-1).map(function(x){return x.trim()});
+      var isOpt=/^opções:/i.test(cur.title),isComp=/complementos e adicionais/i.test(cur.title),isEt=/\|\s*etapa\s*\|/.test(hdr);
+      function add(label,price,line,cell,item,prod){var t={label:label,price:price,line:line,cell:cell,item:item,prod:prod,sec:cur,orig:false};
+        var raw=cell===2?'':l.split('|')[cell+1];
+        t.orig=item==null?OUTRE.test(raw):OUTRE.test(raw.split(',')[item]);t.out=t.orig;cur.items.push(t);T.push(t)}
+      var gp=function(s){return s.replace(/\s*\([^)]*\)\s*$/,'')};
+      if(isComp){c[1].split(',').forEach(function(x,k){add(gp(c[0])+' › '+x.replace(OUTRE,' ').trim(),c[2],i,1,k,false)})}
+      else if(isOpt){add(gp(c[0])+' › '+c[1].replace(OUTRE,' ').trim(),c[2],i,1,null,false)}
+      else if(isEt&&cur.items.every(function(t){return !t.prod})&&!cur.items.length){add(c[0].replace(OUTRE,' ').trim(),c[2],i,0,null,true)}
+      else if(isEt){add(gp(c[0])+' › '+c[1].replace(OUTRE,' ').trim(),c[2],i,1,null,false)}
+      else{add(c[0].replace(OUTRE,' ').trim(),c[2],i,0,null,true)}
+    });
+  }
+  function secName(s){return s.title.replace(/^opções:\s*/i,'Opções de ')}
+  function render(){
+    var q=$('q').value.trim().toLowerCase(),only=$('onlyOut').classList.contains('on'),h='';
+    secs.forEach(function(s){
+      if(!s.items.length)return;
+      var its=s.items.filter(function(t){return(!q||t.label.toLowerCase().indexOf(q)>-1)&&(!only||t.out)});
+      if(!its.length)return;
+      var n=s.items.filter(function(t){return t.out}).length;
+      h+='<details class="sec"'+((q||only)?' open':'')+'><summary><span>'+esc(secName(s))+'</span><span class="n">'+(n?n+' esgotado'+(n>1?'s':''):'')+'</span></summary>'+
+      its.map(function(t){var i=T.indexOf(t);
+        return '<div class="it'+(t.prod?' prod':'')+(t.out?' out':'')+(t.out!==t.orig?' chg':'')+'"><div class="t"><b>'+esc(t.label)+'</b>'+(t.price?'<small>'+esc(t.price.replace(/~~[^~]*~~\s*/g,''))+'</small>':'')+'</div>'+
+        '<label class="sw"><input type="checkbox" data-i="'+i+'"'+(t.out?'':' checked')+' aria-label="'+esc(t.label)+': disponível"><span>'+(t.out?'Esgotado':'Disponível')+'</span></label></div>'}).join('')+'</details>';
+    });
+    $('list').innerHTML=h||'<div class="load">Nada encontrado.</div>';
+  }
+  function dirty(){return T.filter(function(t){return t.out!==t.orig})}
+  function upd(){var n=dirty().length;$('cnt').textContent=n?n+' alteraç'+(n>1?'ões':'ão')+' não salva'+(n>1?'s':''):'Nenhuma alteração';$('undo').disabled=!n;$('save').disabled=!n||!TOKEN;$('save').title=TOKEN?'':'Configure a chave primeiro'}
+  $('list').addEventListener('change',function(e){var i=e.target.dataset.i;if(i==null)return;T[+i].out=!e.target.checked;
+    var d=e.target.closest('.it');d.classList.toggle('out',T[+i].out);d.classList.toggle('chg',T[+i].out!==T[+i].orig);d.querySelector('.sw span').textContent=T[+i].out?'Esgotado':'Disponível';
+    var s=T[+i].sec,n=s.items.filter(function(t){return t.out}).length,sm=d.closest('details').querySelector('.n');sm.textContent=n?n+' esgotado'+(n>1?'s':''):'';upd()});
+  $('q').oninput=render;$('onlyOut').onclick=function(){this.classList.toggle('on');this.className='sec'+(this.classList.contains('on')?' on':'');this.textContent=this.classList.contains('on')?'Mostrar todos':'Só esgotados';render()};
+  $('undo').onclick=function(){T.forEach(function(t){t.out=t.orig});render();upd();msg('')};
+
+  /* Aplica as marcações no texto do arquivo */
+  function build(){
+    var L=lines.slice();
+    dirty().forEach(function(t){
+      var p=L[t.line].split('|'),k=t.cell+1,raw=p[k];
+      function setc(s){return t.out?(s.replace(OUTRE,' ').trim()+' [esgotado]'):s.replace(OUTRE,' ').trim()}
+      if(t.item==null){p[k]=' '+setc(raw.trim())+' '}
+      else{var parts=raw.split(',');parts[t.item]=(t.item?' ':' ')+setc(parts[t.item].trim());p[k]=parts.map(function(x){return x.trim()}).join(', ');p[k]=' '+p[k]+' '}
+      L[t.line]=p.join('|');
+    });
+    return L.join('\n');
+  }
+  function load(){
+    return fetch(API+'?ref='+BR+'&t='+Date.now(),{headers:hdrs(),cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('Não consegui ler o cardápio ('+r.status+').');return r.json()}).then(function(j){sha=j.sha;parse(b64d(j.content));render();upd()});
+  }
+  $('save').onclick=function(){
+    var b=this;b.disabled=true;b.textContent='Salvando…';msg('');var n=dirty().length;
+    var text=build();
+    fetch(API,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},hdrs()),body:JSON.stringify({message:'Painel do dono: atualiza itens esgotados ('+n+')',content:b64e(text),sha:sha,branch:BR})})
+    .then(function(r){return r.json().then(function(j){if(!r.ok){var e=new Error(j.message||r.status);e.status=r.status;throw e}return j})})
+    .then(function(j){sha=j.content.sha;parse(text);render();upd();msg('Salvo! O cardápio dos clientes atualiza em cerca de 1 minuto.','ok')})
+    .catch(function(e){var m=e.status===401||e.status===403||e.status===404?'A chave não foi aceita (confira se ela tem permissão de escrita em Contents neste repositório).':e.status===409||e.status===422?'O cardápio foi alterado em outro lugar. Recarregue a página e tente de novo.':'Não foi possível salvar: '+e.message;msg(m,'err')})
+    .then(function(){b.textContent='Salvar';upd()});
+  };
+  window.addEventListener('beforeunload',function(e){if(dirty().length){e.preventDefault();e.returnValue=''}});
+  syncTok();
+  load().catch(function(e){$('list').innerHTML='<div class="load">'+esc(e.message||'Erro ao carregar')+'</div>'});
+})();
+</script></body></html>
