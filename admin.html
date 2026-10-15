@@ -26,6 +26,11 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 .it{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line)}
 .it .t{flex:1;min-width:0}.it .t b{font-weight:600;display:block;overflow-wrap:anywhere}.it .t small{color:var(--muted);font-size:12px}
 .it.prod .t b{font-weight:800}.it.out .t b{color:var(--bad);text-decoration:line-through}
+.ph{position:relative;flex:none;width:48px;height:48px}
+.ph .pk{width:48px;height:48px;padding:0;border-radius:10px;background:var(--bg);color:var(--muted);border:1px dashed var(--line);font-size:18px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ph .pk img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .rm{position:absolute;top:-6px;right:-6px;width:20px;height:20px;padding:0;border-radius:50%;background:var(--bad);color:#fff;font-size:12px;line-height:20px}
+.ph.busy .pk{opacity:.4}
 .gh2{padding:8px 14px;background:color-mix(in srgb,var(--acai2) 10%,transparent);color:var(--acai2);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-top:1px solid var(--line)}
 .it.chg{background:color-mix(in srgb,var(--gold,#f4b400) 14%,transparent)}
 .stkb{flex:none;background:var(--bg);color:var(--muted);border:1px solid var(--line);padding:6px 9px;font-size:12px}.stkb.on{background:var(--ok);color:#fff;border-color:var(--ok)}
@@ -53,6 +58,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 
 <div class="tools"><input type="search" id="q" placeholder="Buscar produto ou complemento…" aria-label="Buscar"><button class="sec" id="onlyOut" type="button">Só esgotados</button></div>
 <div id="msg"></div>
+<input type="file" id="pick" accept="image/*" hidden>
 <div id="list"><div class="load">Carregando cardápio…</div></div>
 </div>
 <div class="bar"><div class="in"><span id="cnt">Nenhuma alteração</span><button class="sec" id="undo" type="button" disabled>Desfazer</button><button id="save" type="button" disabled>Salvar</button></div></div>
@@ -61,7 +67,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 (function(){
   var REPO='Henr2023/A-a-Imperial',FILE='CARDAPIO.md',BR='main',API='https://api.github.com/repos/'+REPO+'/contents/'+FILE;
   var OUTRE=/\s*\[esgotado\]\s*/i,STKRE=/\s*\[em estoque\]\s*/i;
-  var lines=[],sha='',T=[],secs=[],TOKEN='';
+  var lines=[],sha='',T=[],secs=[],TOKEN='',PH={},phSha=null,pickIdx=-1;
   function $(i){return document.getElementById(i)}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   try{TOKEN=localStorage.getItem('ai-gh')||''}catch(e){}
@@ -103,7 +109,8 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
       var n=s.items.filter(function(t){return t.out}).length,pg=null;
       h+='<details class="sec"'+((q||only)?' open':'')+'><summary><span>'+esc(secName(s))+'</span><span class="n">'+(n?n+' esgotado'+(n>1?'s':''):'')+'</span></summary>'+
       its.map(function(t){var i=T.indexOf(t),gh='';if(t.group&&t.group!==pg)gh='<div class="gh2">'+esc(t.group)+'</div>';pg=t.group;
-        return gh+'<div class="it'+(t.prod?' prod':'')+(t.out?' out':'')+(chg(t)?' chg':'')+'"><div class="t"><b>'+esc(t.label)+'</b>'+(t.price?'<small>'+esc(t.price.replace(/~~[^~]*~~\s*/g,''))+'</small>':'')+'</div>'+
+        var ph=t.prod?'<div class="ph" data-ph="'+i+'"><button type="button" class="pk" data-pk="'+i+'" title="Adicionar ou trocar a foto" aria-label="Foto de '+esc(t.label)+'">'+(PH[t.label]?'<img src="'+esc(PH[t.label])+'" alt="">':'📷')+'</button>'+(PH[t.label]?'<button type="button" class="rm" data-rm="'+i+'" title="Remover foto" aria-label="Remover foto">×</button>':'')+'</div>':'';
+        return gh+'<div class="it'+(t.prod?' prod':'')+(t.out?' out':'')+(chg(t)?' chg':'')+'">'+ph+'<div class="t"><b>'+esc(t.label)+'</b>'+(t.price?'<small>'+esc(t.price.replace(/~~[^~]*~~\s*/g,''))+'</small>':'')+'</div>'+
         '<button type="button" class="stkb'+(t.stock?' on':'')+'" data-c="'+i+'"'+(t.out?' disabled':'')+' aria-pressed="'+!!t.stock+'">Em estoque</button><label class="sw"><input type="checkbox" data-i="'+i+'"'+(t.out?'':' checked')+' aria-label="'+esc((t.group?t.group+' ':'')+t.label)+': disponível"><span>'+(t.out?'Esgotado':'Disponível')+'</span></label></div>'}).join('')+'</details>';
     });
     $('list').innerHTML=h||'<div class="load">Nada encontrado.</div>';
@@ -131,8 +138,33 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
     });
     return L.join('\n');
   }
+  /* ===== Fotos dos produtos ===== */
+  var BASE='https://api.github.com/repos/'+REPO+'/contents/';
+  function slug(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+  function gget(path){return fetch(BASE+path+'?ref='+BR+'&t='+Date.now(),{headers:hdrs(),cache:'no-store'}).then(function(r){if(r.status===404)return null;if(!r.ok)throw new Error('Não consegui ler '+path+' ('+r.status+').');return r.json()})}
+  function gput(path,b64,sha,msg){var b={message:msg,content:b64,branch:BR};if(sha)b.sha=sha;return fetch(BASE+path,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},hdrs()),body:JSON.stringify(b)}).then(function(r){return r.json().then(function(j){if(!r.ok){var e=new Error(j.message||r.status);e.status=r.status;throw e}return j})})}
+  function loadPhotos(){return gget('fotos.json').then(function(j){if(j){phSha=j.sha;try{PH=JSON.parse(b64d(j.content))||{}}catch(e){PH={}}}else{PH={};phSha=null}}).catch(function(){})}
+  function savePhotos(msg){return gget('fotos.json').then(function(j){var cur={};if(j){try{cur=JSON.parse(b64d(j.content))||{}}catch(e){}}
+    Object.keys(PH).forEach(function(k){cur[k]=PH[k]});Object.keys(cur).forEach(function(k){if(!(k in PH))delete cur[k]});
+    return gput('fotos.json',b64e(JSON.stringify(cur,null,2)+'\n'),j&&j.sha,msg)}).then(function(r){phSha=r.content.sha})}
+  function shrink(file){return new Promise(function(ok,no){var im=new Image(),u=URL.createObjectURL(file);im.onload=function(){var S=600,c=document.createElement('canvas');c.width=c.height=S;var x=c.getContext('2d'),m=Math.min(im.width,im.height),sx=(im.width-m)/2,sy=(im.height-m)/2;x.fillStyle='#fff';x.fillRect(0,0,S,S);x.drawImage(im,sx,sy,m,m,0,0,S,S);URL.revokeObjectURL(u);c.toBlob(function(b){if(!b)return no(new Error('Não consegui preparar a imagem.'));var r=new FileReader();r.onload=function(){ok(String(r.result).split(',')[1])};r.readAsDataURL(b)},'image/jpeg',.85)};im.onerror=function(){no(new Error('Esse arquivo não parece ser uma imagem.'))};im.src=u})}
+  $('list').addEventListener('click',function(e){
+    var k=e.target.closest('[data-pk]'),r=e.target.closest('[data-rm]');
+    if(k){if(!TOKEN){msg('Configure a chave em "Conexão para salvar" para enviar fotos.','err');$('conn').open=true;return}pickIdx=+k.dataset.pk;$('pick').value='';$('pick').click()}
+    else if(r){var t=T[+r.dataset.rm];if(!confirm('Remover a foto de "'+t.label+'"?'))return;var box=r.closest('.ph');box.classList.add('busy');delete PH[t.label];msg('');
+      savePhotos('Painel do dono: remove foto de '+t.label).then(function(){msg('Foto removida. O cardápio atualiza em cerca de 1 minuto.','ok')}).catch(function(er){msg('Não foi possível remover: '+er.message,'err')}).then(render)}
+  });
+  $('pick').addEventListener('change',function(){
+    var f=this.files[0];if(!f||pickIdx<0)return;var t=T[pickIdx],name=t.label,path='fotos/'+slug(name)+'.jpg';
+    msg('Enviando a foto de "'+name+'"…','ok');var box=document.querySelector('[data-ph="'+pickIdx+'"]');if(box)box.classList.add('busy');
+    shrink(f).then(function(b64){return gget(path).then(function(j){return gput(path,b64,j&&j.sha,'Painel do dono: foto de '+name)})})
+    .then(function(){PH[name]=path+'?v='+Date.now();return savePhotos('Painel do dono: foto de '+name)})
+    .then(function(){msg('Foto de "'+name+'" salva! O cardápio atualiza em cerca de 1 minuto.','ok')})
+    .catch(function(er){delete PH[name];var m=er.status===401||er.status===403||er.status===404?'A chave não foi aceita (precisa de permissão de escrita em Contents neste repositório).':'Não foi possível enviar a foto: '+er.message;msg(m,'err')})
+    .then(render);
+  });
   function load(){
-    return fetch(API+'?ref='+BR+'&t='+Date.now(),{headers:hdrs(),cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('Não consegui ler o cardápio ('+r.status+').');return r.json()}).then(function(j){sha=j.sha;parse(b64d(j.content));render();upd()});
+    return fetch(API+'?ref='+BR+'&t='+Date.now(),{headers:hdrs(),cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('Não consegui ler o cardápio ('+r.status+').');return r.json()}).then(function(j){sha=j.sha;parse(b64d(j.content));return loadPhotos()}).then(function(){render();upd()});
   }
   $('save').onclick=function(){
     var b=this;b.disabled=true;b.textContent='Salvando…';msg('');var n=dirty().length;
