@@ -14,6 +14,8 @@ header a{color:#fff;font-weight:700;font-size:13px;display:inline-block;margin-t
 .box{margin:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .box summary{cursor:pointer;font-weight:700}
 .box p{margin:8px 0;color:var(--muted);font-size:13px}
+.btnlink{display:inline-block;background:var(--acai2);color:#fff;font-weight:700;text-decoration:none;padding:10px 14px;border-radius:10px}
+.box code{background:var(--bg);padding:1px 5px;border-radius:5px}
 .box ol{margin:6px 0 10px;padding-left:20px;color:var(--muted);font-size:13px}
 .row2{display:flex;gap:8px}
 input[type=password],input[type=search]{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
@@ -49,10 +51,13 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 <header><h1>Painel do dono · Açaí Imperial</h1><p>Marque o que está esgotado e salve. O cardápio dos clientes atualiza em cerca de 1 minuto.</p><a href="./">← Ver cardápio dos clientes</a></header>
 
 <details class="box" id="conn"><summary id="connS">Conexão para salvar</summary>
-<p>Para salvar, esta página precisa de uma chave do GitHub (feita uma vez só, fica guardada neste aparelho):</p>
-<ol><li>GitHub → Settings → Developer settings → <b>Fine-grained tokens</b> → Generate new token.</li>
-<li>Em <i>Repository access</i> escolha só o repositório <b>A-a-Imperial</b>.</li>
-<li>Em <i>Permissions → Contents</i> marque <b>Read and write</b>. Gere e copie a chave.</li></ol>
+<p>Para salvar o estoque e enviar fotos, o painel precisa de uma chave do GitHub. Você faz isso <b>uma vez só</b> em cada aparelho:</p>
+<p><a class="btnlink" href="https://github.com/settings/personal-access-tokens/new?name=Painel%20Acai%20Imperial&amp;description=Painel%20do%20dono%20(fotos%20e%20estoque)&amp;target_name=Henr2023&amp;expires_in=365&amp;contents=write" target="_blank" rel="noopener">1. Criar minha chave no GitHub ↗</a></p>
+<ol><li>O GitHub pode pedir para confirmar por e-mail. Confirme e volte para a tela da chave.</li>
+<li>Em <i>Repository access</i> escolha <b>Only select repositories</b> e marque <b>A-a-Imperial</b>.</li>
+<li>Em <i>Permissions → Repository permissions → Contents</i> deixe <b>Read and write</b> (já deve vir marcado).</li>
+<li>Vá até o fim, toque em <b>Generate token</b> e <b>copie</b> a chave (começa com <code>github_pat_</code>).</li>
+<li>Volte aqui, cole no campo abaixo e toque em <b>Guardar</b>.</li></ol>
 <div class="row2"><input type="password" id="tok" placeholder="Cole a chave aqui" autocomplete="off"><button id="tokOk" type="button">Guardar</button></div>
 <p id="tokMsg"></p></details>
 
