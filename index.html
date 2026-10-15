@@ -86,7 +86,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 .sh-f .tot{flex:1}.sh-f .tot small{display:block;color:var(--muted);font-size:12px}.sh-f .tot b{font-size:18px}
 .go{border:0;border-radius:10px;background:var(--acai);color:#fff;font-weight:700;padding:13px 18px;cursor:pointer;font:inherit;font-weight:700}
 .go:disabled{opacity:.45;cursor:not-allowed}
-.go.wa{background:#1f9e55}.go.alt{background:var(--bg);color:var(--ink);padding:13px 14px}
+.go.wa{background:#1f9e55}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1f1f1f;color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:60}
 /* Carrinho */
 .row .th{position:relative}
@@ -113,18 +113,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 .seg input{width:auto;accent-color:var(--acai2)}
 .seg label:has(input:checked){border-color:var(--acai2);background:color-mix(in srgb,var(--acai2) 12%,transparent)}
 .empty{padding:32px 16px;text-align:center;color:var(--muted)}
-#comanda{display:none}
-@media print{
-  @page{size:80mm auto;margin:3mm}
-  body{background:#fff}
-  body>*:not(#comanda){display:none!important}
-  #comanda{display:block;width:74mm;font:12px/1.35 "Courier New",monospace;color:#000}
-  #comanda h1{font-size:16px;text-align:center;margin:0}
-  #comanda .c{text-align:center}#comanda hr{border:0;border-top:1px dashed #000;margin:6px 0}
-  #comanda .l{display:flex;justify-content:space-between;gap:6px}
-  #comanda .d{padding-left:10px;font-size:11px}
-  #comanda .big{font-size:15px;font-weight:700}
-}
 @media (prefers-reduced-motion:reduce){.track{transition:none}html{scroll-behavior:auto}}
 </style></head><body>
 <div class="app">
@@ -186,10 +174,9 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
         <label>Observações<textarea id="fObs" rows="2" placeholder="Ex: caprichar no leite condensado"></textarea></label>
       </div>
     </div>
-    <div class="sh-f"><div class="tot"><small>Total</small><b id="cTot">R$ 0,00</b></div><button class="go alt" id="cPr" aria-label="Imprimir comanda" title="Imprimir comanda">🖨</button><button class="go wa" id="cGo">Enviar pelo WhatsApp</button></div>
+    <div class="sh-f"><div class="tot"><small>Total</small><b id="cTot">R$ 0,00</b></div><button class="go wa" id="cGo">Enviar pelo WhatsApp</button></div>
   </div>
 </div>
-<div id="comanda"></div>
 <script>
 (function(){
   /* Carrossel: troca a cada 4s, pausa ao tocar, aceita arrastar */
@@ -311,7 +298,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   };
   function toast(t){var d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},2200)}
 
-  /* ===== CARRINHO ===== guardado no navegador do cliente; "Imprimir comanda" gera cupom de 80mm */
+  /* ===== CARRINHO ===== guardado no navegador do cliente */
   var CART=[],SIMPLE=[],DRINKS=[];
   try{CART=JSON.parse(localStorage.getItem('ai-cart'))||[]}catch(e){CART=[]}
   function $(id){return document.getElementById(id)}
@@ -321,7 +308,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   function renderC(){
     var n=CART.reduce(function(s,it){return s+it.q},0);
     $('cbar').hidden=!n||!cov.hidden;document.querySelector('.app').classList.toggle('has-cart',!!n);
-    $('cN').textContent=n;$('cT').textContent=brl(cTotal());$('cTot').textContent=brl(cTotal());$('cGo').disabled=$('cPr').disabled=!n;
+    $('cN').textContent=n;$('cT').textContent=brl(cTotal());$('cTot').textContent=brl(cTotal());$('cGo').disabled=!n;
     $('cL').innerHTML=n?CART.map(function(it,i){return '<div class="ci"><div class="info"><h4>'+esc(it.name)+'</h4>'+(it.det.length?'<p>'+esc(it.det.join('\n'))+'</p>':'')+'<div class="pr">'+brl(it.p*it.q)+'</div></div><span class="qty"><button type="button" class="qm" data-i="'+i+'" aria-label="'+(it.q>1?'Menos':'Remover')+'">'+(it.q>1?'−':'×')+'</button><b>'+it.q+'</b><button type="button" class="qp" data-i="'+i+'" aria-label="Mais">+</button></span></div>'}).join(''):'<div class="empty">Seu carrinho está vazio.</div>';
     $('cUw').hidden=!DRINKS.length;
     $('cU').innerHTML=DRINKS.map(function(d,i){return '<button type="button" class="up" data-u="'+i+'" aria-label="Adicionar '+esc(d.n)+'"><span class="th">'+d.a+'</span><span class="t">'+esc(d.n)+'<b>'+brl(d.p)+'</b></span><span class="add" aria-hidden="true">+</span></button>'}).join('');
@@ -357,17 +344,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     var url='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
     if(!window.open(url,'_blank'))location.href=url;
     limpa('Pedido #'+cod+' enviado pelo WhatsApp');
-  };
-  $('cPr').onclick=function(){
-    var o=pedido();if(!o)return;
-    var num=1;try{num=(+localStorage.getItem('ai-num')||0)+1;localStorage.setItem('ai-num',num)}catch(e){}
-    var L=function(a,b){return '<div class="l"><span>'+a+'</span><span>'+b+'</span></div>'};
-    $('comanda').innerHTML='<h1>AÇAÍ IMPERIAL</h1><div class="c">Comanda #'+String(num).padStart(3,'0')+'<br>'+o.dt+'</div><hr>'+
-      '<div class="big">'+esc(o.tipo.toUpperCase())+'</div>Cliente: '+esc(o.nome)+(o.tipo==='Entrega'?'<br>Endereço: '+esc(o.end):'')+'<hr>'+
-      CART.map(function(it){return L('<b>'+it.q+'x '+esc(it.name)+'</b>',brl(it.p*it.q))+it.det.map(function(x){return '<div class="d">- '+esc(x)+'</div>'}).join('')}).join('')+'<hr>'+
-      '<div class="big">'+L('TOTAL',brl(cTotal()))+'</div>Pagamento: '+esc(o.pg)+(o.obs?'<hr>Obs: '+esc(o.obs):'')+'<hr><div class="c">Obrigado pela preferência!</div>';
-    window.print();
-    limpa('Comanda #'+num+' enviada para impressão');
   };
   renderC();
 
