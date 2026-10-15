@@ -113,7 +113,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 .seg input{width:auto;accent-color:var(--acai2)}
 .seg label:has(input:checked){border-color:var(--acai2);background:color-mix(in srgb,var(--acai2) 12%,transparent)}
 .empty{padding:32px 16px;text-align:center;color:var(--muted)}
-.row.out{opacity:.55}.row.out .th{filter:grayscale(1)}.esg{color:#c0392b;font-weight:700;font-size:13px}
+.stk,.op small.stk{display:inline-block;margin-left:6px;background:color-mix(in srgb,#1f9e55 16%,transparent);color:#1f9e55;font-weight:700;font-size:11px;padding:1px 7px;border-radius:999px;vertical-align:middle}.row.out{opacity:.55}.row.out .th{filter:grayscale(1)}.esg{color:#c0392b;font-weight:700;font-size:13px}
 @media (prefers-reduced-motion:reduce){.track{transition:none}html{scroll-behavior:auto}}
 </style></head><body>
 <div class="app">
@@ -219,10 +219,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
      Tipos de açaí e talheres ficam aqui. Tamanhos, caldas, frutas, cremes e
      guloseimas vêm do CARDAPIO.md (seções "Monte o Seu" e "Complementos e adicionais"). */
   /* Esgotado: escreva [esgotado] no CARDAPIO.md, na linha do produto/opção (ou ao lado de um complemento da lista) */
-  var OUTRE=/\s*\[esgotado\]\s*/i;
-  function markOut(title,rows){if(/complementos e adicionais/i.test(title))return;rows.forEach(function(r){var o=false;r.forEach(function(x,i){if(OUTRE.test(x)){o=true;r[i]=x.replace(OUTRE,' ').trim()}});r.out=o})}
+  var OUTRE=/\s*\[esgotado\]\s*/i,STKRE=/\s*\[em estoque\]\s*/i;
+  function markOut(title,rows){if(/complementos e adicionais/i.test(title))return;rows.forEach(function(r){var o=false,k=false;r.forEach(function(x,i){if(OUTRE.test(x)){o=true;x=x.replace(OUTRE,' ').trim()}if(STKRE.test(x)){k=true;x=x.replace(STKRE,' ').trim()}r[i]=x});r.out=o;r.stock=k&&!o})}
+  function stkIf(o,h){return o?h.replace('</h4>','<span class="stk">Em estoque</span></h4>'):h}
+  function rowFx(r,h){return r.out?outIf(1,h):stkIf(r.stock,h)}
   function outIf(o,h){return o?h.replace(/^<div class="row[^>]*>/,'<div class="row out">').replace(/<div class="pr">[\s\S]*?<\/div>/,'<div class="pr"><b class="esg">Esgotado</b></div>').replace(/<button type="button" class="add"[\s\S]*?<\/button>/,''):h}
-  function mo(n,p){var a=[n.replace(OUTRE,' ').trim(),p];a.out=OUTRE.test(n);return a}
+  function mo(n,p){var a=[n.replace(OUTRE,' ').replace(STKRE,' ').trim(),p];a.out=OUTRE.test(n);a.stock=STKRE.test(n)&&!a.out;return a}
   var TIPOS=['Açaí tradicional','Açaí zero açúcar'];
   var TALHERES=['Sim, quero talheres','Não precisa'];
   var MONTE=null,CFG={},cur=null;
@@ -230,14 +232,14 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   function money(s){var m=/R\$\s*([\d.]*\d,\d{2})/.exec((s||'').replace(/~~[^~]*~~/g,''));return m?parseFloat(m[1].replace(/\./g,'').replace(',','.')):0}
   function find(T,re){for(var k in T){if(re.test(k))return T[k]}return []}
   function buildMonte(T){
-    var sizes=find(T,/^(monte o seu|copos imperiais)/i).map(function(c){var f=/\+\s*(\d+)\s*complemento/i.exec(c[1]);return{n:c[0].replace(/^copo imperial\s*/i,''),p:money(c[2]),free:f?+f[1]:3,out:c.out}});
+    var sizes=find(T,/^(monte o seu|copos imperiais)/i).map(function(c){var f=/\+\s*(\d+)\s*complemento/i.exec(c[1]);return{n:c[0].replace(/^copo imperial\s*/i,''),p:money(c[2]),free:f?+f[1]:3,out:c.out,stock:c.stock}});
     if(!sizes.length)return;
     var comp=find(T,/complementos e adicionais/i),G={};
     comp.forEach(function(c){G[c[0].toLowerCase()]={opts:c[1].split(',').map(function(x){return x.trim()}).filter(Boolean),p:money(c[2])}});
     function g(key){for(var k in G){if(k.indexOf(key)===0)return G[k]}return{opts:[],p:0}}
     var gr=[
       {id:'tipo',name:'Tipo de açaí',hint:'Escolha 1',min:1,max:1,opts:TIPOS.map(function(n){return[n,0]})},
-      {id:'tam',name:'Tamanho',hint:'Escolha 1',min:1,max:1,opts:sizes.map(function(s){var a=[s.n,s.p,s.free+' complementos grátis'];a.out=s.out;return a}),base:true},
+      {id:'tam',name:'Tamanho',hint:'Escolha 1',min:1,max:1,opts:sizes.map(function(s){var a=[s.n,s.p,s.free+' complementos grátis'];a.out=s.out;a.stock=s.stock;return a}),base:true},
       {id:'comp',name:'Complementos grátis',hint:'',max:3,opts:g('complementos').opts.map(function(n){return mo(n,0)}),free:true},
       {id:'calda',name:'Caldas',hint:'Até 2',max:2,opts:g('calda').opts.map(function(n){return mo(n,g('calda').p)})},
       {id:'fruta',name:'Frutas',hint:'Até 4',max:4,opts:g('fruta').opts.map(function(n){return mo(n,g('fruta').p)})},
@@ -258,8 +260,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
         if(/escolha 1|obrigat/.test(rule)){g.min=1;g.max=1;g.hint='Escolha 1'}
         var a=/até\s*(\d+)/.exec(rule);if(a){g.max=+a[1];g.hint='Até '+a[1]}
         map[gn]=g;gs.push(g)}
-      var qm=/\s*\(até\s*(\d+)\)\s*$/i.exec(c[1]);var op=qm?[c[1].replace(qm[0],''),money(c[2]),'',+qm[1]]:[c[1],money(c[2])];op.out=c.out;map[gn].opts.push(op)});
-    CFG[slug(title)]={name:it[0],sub:it[1],base:money(it[2]),groups:gs,out:it.out};
+      var qm=/\s*\(até\s*(\d+)\)\s*$/i.exec(c[1]);var op=qm?[c[1].replace(qm[0],''),money(c[2]),'',+qm[1]]:[c[1],money(c[2])];op.out=c.out;op.stock=c.stock;map[gn].opts.push(op)});
+    CFG[slug(title)]={name:it[0],sub:it[1],base:money(it[2]),groups:gs,out:it.out,stock:it.stock};
   }
   var ov=document.getElementById('ov'),shB=document.getElementById('shB'),last=null;
   function openB(key){
@@ -268,7 +270,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     shB.innerHTML=cur.groups.map(function(gp){
       var type=gp.max===1&&gp.min?'radio':'checkbox';
       return '<div data-g="'+gp.id+'"><div class="gh"><div><b>'+esc(gp.name)+'</b><span class="hint">'+esc(gp.hint)+'</span></div>'+(gp.min?'<span class="req">Obrigatório</span>':'')+'</div>'+
-        gp.opts.map(function(o,k){return '<label class="op'+(o.out?' dis':'')+'"><span>'+esc(o[0])+(o.out?'<small>Esgotado</small>':'')+(o[2]?'<small>'+esc(o[2])+'</small>':'')+(o[1]&&!gp.base?'<small>+ '+brl(o[1])+(o[3]?' cada':'')+'</small>':'')+(gp.base?'<small>'+brl(o[1])+'</small>':'')+'</span>'+(o[3]?'<span class="qty" data-q="'+gp.id+':'+k+'" data-max="'+o[3]+'" hidden><button type="button" class="qm" aria-label="Menos">−</button><b>1</b><button type="button" class="qp" aria-label="Mais">+</button></span>':'')+'<input type="'+type+'" name="m-'+gp.id+'" value="'+k+'"'+(o.out?' disabled data-out="1"':'')+'></label>'}).join('')+'</div>';
+        gp.opts.map(function(o,k){return '<label class="op'+(o.out?' dis':'')+'"><span>'+esc(o[0])+(o.out?'<small>Esgotado</small>':o.stock?'<small class="stk">Em estoque</small>':'')+(o[2]?'<small>'+esc(o[2])+'</small>':'')+(o[1]&&!gp.base?'<small>+ '+brl(o[1])+(o[3]?' cada':'')+'</small>':'')+(gp.base?'<small>'+brl(o[1])+'</small>':'')+'</span>'+(o[3]?'<span class="qty" data-q="'+gp.id+':'+k+'" data-max="'+o[3]+'" hidden><button type="button" class="qm" aria-label="Menos">−</button><b>1</b><button type="button" class="qp" aria-label="Mais">+</button></span>':'')+'<input type="'+type+'" name="m-'+gp.id+'" value="'+k+'"'+(o.out?' disabled data-out="1"':'')+'></label>'}).join('')+'</div>';
     }).join('');
     upd();ov.hidden=false;document.body.style.overflow='hidden';document.getElementById('shX').focus();
   }
@@ -369,16 +371,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
       html+='<section id="'+id+'"><h3>'+esc(title)+'</h3>';
       var bk=CFG[id]?id:(/^(monte o seu|copos imperiais)/i.test(title)&&MONTE?'monte':null);
       if(bk==='monte'){
-        html+=outIf(rows[0]&&rows[0].out,'<div class="row btn" data-k="monte" role="button" tabindex="0"><div class="info"><h4>Monte seu Açaí</h4><p>Escolha o tipo, o tamanho, caldas, frutas, cremes e guloseimas do seu jeito.</p><div class="pr"><span class="from">a partir de</span>'+brl(MONTE.min)+'</div></div><div class="th">'+A.cup+'</div></div>');
+        html+=rowFx(rows[0]||{},'<div class="row btn" data-k="monte" role="button" tabindex="0"><div class="info"><h4>Monte seu Açaí</h4><p>Escolha o tipo, o tamanho, caldas, frutas, cremes e guloseimas do seu jeito.</p><div class="pr"><span class="from">a partir de</span>'+brl(MONTE.min)+'</div></div><div class="th">'+A.cup+'</div></div>');
       } else if(bk){var b=CFG[bk];
-        html+=outIf(b.out,'<div class="row btn" data-k="'+bk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(b.name)+'</h4><p>'+esc(b.sub)+'</p><div class="pr">'+(b.base?brl(b.base):(b.groups[0]&&b.groups[0].opts.length?'<span class="from">a partir de</span>'+brl(Math.min.apply(null,b.groups[0].opts.map(function(o){return o[1]}))):''))+'</div></div><div class="th">'+art(b.name,title)+'</div></div>');
+        html+=rowFx(b,'<div class="row btn" data-k="'+bk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(b.name)+'</h4><p>'+esc(b.sub)+'</p><div class="pr">'+(b.base?brl(b.base):(b.groups[0]&&b.groups[0].opts.length?'<span class="from">a partir de</span>'+brl(Math.min.apply(null,b.groups[0].opts.map(function(o){return o[1]}))):''))+'</div></div><div class="th">'+art(b.name,title)+'</div></div>');
       } else {
         html+=rows.map(function(c,ri){
           var op=OPT[c[0].toLowerCase()];
           if(op){var kk=slug(c[0]+' '+id+' '+ri);buildEtapas(c[0]+' '+id+' '+ri,[c].concat(op));
-            return outIf(c.out,'<div class="row btn" data-k="'+kk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+pr(c[2])+'</div></div><div class="th">'+art(c[0],title)+'</div></div>');}
+            return rowFx(c,'<div class="row btn" data-k="'+kk+'" role="button" tabindex="0"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+pr(c[2])+'</div></div><div class="th">'+art(c[0],title)+'</div></div>');}
           var sp=money(c[2]),si=SIMPLE.push({n:c[0],p:sp})-1;if(sp&&!c.out&&/bebida/i.test(title))DRINKS.push({n:c[0],p:sp,a:art(c[0],title)});
-          return outIf(c.out,'<div class="row"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+pr(c[2])+'</div></div><div class="th">'+art(c[0],title)+(sp?'<button type="button" class="add" data-s="'+si+'" aria-label="Adicionar '+esc(c[0])+'">+</button>':'')+'</div></div>');
+          return rowFx(c,'<div class="row"><div class="info"><h4>'+esc(c[0])+'</h4><p>'+esc(c[1])+'</p><div class="pr">'+pr(c[2])+'</div></div><div class="th">'+art(c[0],title)+(sp?'<button type="button" class="add" data-s="'+si+'" aria-label="Adicionar '+esc(c[0])+'">+</button>':'')+'</div></div>');
         }).join('');
       }
       html+='</section>';
