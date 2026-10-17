@@ -6,9 +6,9 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Etapa | Opção | Preço |
 |---|---|---|
-| Açaís Supremos Imperiais | Os maiores açaís da casa, para compartilhar. Escolha o seu. | R$ 55,00 |
-| Escolha seu Supremo (escolha 1) | Açaí Roleta Imperial 1400ml | R$ 9,99 |
-| Escolha seu Supremo (escolha 1) | Açaí Tigela 1000ml | Grátis |
+| Açaís Supremos Imperiais | Imperiais Supremos Açaís para compartilhar — ou enfrentar sozinho, sem arrependimento. | R$ 55,00 |
+| Escolha seu Supremo (escolha 1) | Açaí Tigela Imperial 1500ml | R$ 9,99 |
+| Escolha seu Supremo (escolha 1) | Açaí Tigela Imperial 1000ml - Explosão de Chocolate | Grátis |
 | Escolha seu Supremo (escolha 1) | Açaí Roleta 1000ml | Grátis |
 | Deseja talheres? (escolha 1) | Quero talheres (até 5) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
