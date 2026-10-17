@@ -22,7 +22,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Açaí Trufado Imperial | Calda de leite condensado, leite em pó, Biss crocante, banana e o creme da sua escolha — tudo isso coroado por uma trufa artesanal em formato de coração ou flor.\n\nBonito demais pra não fotografar. Gostoso demais pra compartilhar.\n\nO pedido que faz qualquer dia parecer data especial. 🌸✨ | ~~R$ 45,00~~ R$ 37,00 |
 | Mini Roleta (1 pessoa) | 4 divisões: banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
 | Combo Black & White | 2 copos de 400ml. Dois copos, dois mundos, uma decisão impossível. Por isso vieram juntos.\n\n🖤 Black — Açaí cremoso com leite condensado, leite em pó, calda de chocolate ao leite, banana fresquinha e Creme Black (cacau 70%, uma dose de café e chocolate em barra) por cima. Intenso, cremoso e irresistível da primeira à última colherada.\n\n🤍 White — Açaí cremoso com leite condensado, paçoca, Biss, morango fresco e Creme White (Ninho com chocolate branco). Delicado, frutado e com aquele toque especial feito na mão.\n\nServidos nos caprichados copos bolha — bonitos demais pra não postar. | ~~R$ 60,00~~ R$ 53,99 |
-| Shake de Açaí |  | ~~R$ 25,99~~ R$ 19,99 |
+| Shake de Açaí | Bonita demais pra ser só uma bebida.\n\nNossa Batida de Açaí chega nessa garrafinha que já impressiona de longe — e quando você abre, entende o motivo do hype.\n\nAçaí puro, leite condensado, paçoca, leite líquido, leite em pó e banana batidos juntos até virar a coisa mais cremosa que você já tomou.\n\nGelada, encorpada e impossível de tomar devagar. | ~~R$ 25,99~~ R$ 19,99 |
 
 ## Copos Imperiais
 
