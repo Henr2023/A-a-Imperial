@@ -391,8 +391,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
       }
       html+='</section>';
     });
-    document.getElementById('tabs').innerHTML=tabs;
-    document.getElementById('menu').innerHTML=html;
+    tabs+='<a href="#avaliacoes">Avaliações</a>';html+='<section id="avaliacoes"><h3>Avaliações</h3><div id="avBox"></div></section>';document.getElementById('tabs').innerHTML=tabs;
+    document.getElementById('menu').innerHTML=html;if(window.AV_INIT)AV_INIT();
     var links=[].slice.call(document.querySelectorAll('.tabs a'));
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){var on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest',inline:'center'})})}})},{rootMargin:'-60px 0px -75% 0px'});
     document.querySelectorAll('#menu section').forEach(function(s){io.observe(s)});
@@ -404,4 +404,5 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 <script>
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.pick');if(!b)return;var n=b.getAttribute('data-n').toLowerCase();var r=[].slice.call(document.querySelectorAll('.row.btn')).filter(function(x){var h=x.querySelector('h4');return h&&h.textContent.toLowerCase().indexOf(n)===0})[0];if(r)r.click()});
 </script>
+<script src="avaliacoes.js?v=1"></script>
 </body></html>
