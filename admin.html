@@ -33,6 +33,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 .ph .pk img{width:100%;height:100%;object-fit:cover;display:block}
 .ph .rm{position:absolute;top:-6px;right:-6px;width:20px;height:20px;padding:0;border-radius:50%;background:var(--bad);color:#fff;font-size:12px;line-height:20px}
 .ph.busy .pk{opacity:.4}
+.lg{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.lg .lgi{width:64px;height:64px;border-radius:50%;flex:none;overflow:hidden;background:linear-gradient(145deg,#7a2d8f,#4b1660);display:grid;place-items:center;color:#f4b400;font-size:26px}.lg .lgi img{width:100%;height:100%;object-fit:cover;display:block}.lg .lgt{flex:1;min-width:140px}.lg .lgt b{display:block}.lg .lgt small{color:var(--muted);font-size:12px}.lg .lgb{display:flex;gap:6px}.lg.busy .lgi{opacity:.4}
 .ph.sm,.ph.sm .pk{width:38px;height:38px}.ph.sm .pk{font-size:15px}
 .gh2{padding:8px 14px;background:color-mix(in srgb,var(--acai2) 10%,transparent);color:var(--acai2);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-top:1px solid var(--line)}
 .it.chg{background:color-mix(in srgb,var(--gold,#f4b400) 14%,transparent)}
@@ -63,7 +64,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 <p id="tokMsg"></p></details>
 
 <div class="tools"><input type="search" id="q" placeholder="Buscar produto ou complemento…" aria-label="Buscar"><button class="sec" id="onlyOut" type="button">Só esgotados</button></div>
-<div id="msg"></div>
+<div class="box lg" id="logoBox"></div><div id="msg"></div>
 <input type="file" id="pick" accept="image/*" hidden>
 <div id="list"><div class="load">Carregando cardápio…</div></div>
 </div>
@@ -119,7 +120,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
         return gh+'<div class="it'+(t.prod?' prod':'')+(t.out?' out':'')+(chg(t)?' chg':'')+'">'+ph+'<div class="t"><b>'+esc(t.label)+'</b>'+(t.price?'<small>'+esc(t.price.replace(/~~[^~]*~~\s*/g,''))+'</small>':'')+'</div>'+
         '<button type="button" class="stkb'+(t.stock?' on':'')+'" data-c="'+i+'"'+(t.out?' disabled':'')+' aria-pressed="'+!!t.stock+'">Em estoque</button><label class="sw"><input type="checkbox" data-i="'+i+'"'+(t.out?'':' checked')+' aria-label="'+esc((t.group?t.group+' ':'')+t.label)+': disponível"><span>'+(t.out?'Esgotado':'Disponível')+'</span></label></div>'}).join('')+'</details>';
     });
-    $('list').innerHTML=h||'<div class="load">Nada encontrado.</div>';
+    renderLogo();$('list').innerHTML=h||'<div class="load">Nada encontrado.</div>';
   }
   function chg(t){return t.out!==t.orig||t.stock!==t.ostock}
   function dirty(){return T.filter(chg)}
@@ -154,6 +155,12 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
     Object.keys(PH).forEach(function(k){cur[k]=PH[k]});Object.keys(cur).forEach(function(k){if(!(k in PH))delete cur[k]});
     return gput('fotos.json',b64e(JSON.stringify(cur,null,2)+'\n'),j&&j.sha,msg)}).then(function(r){phSha=r.content.sha})}
   function shrink(file){return new Promise(function(ok,no){var im=new Image(),u=URL.createObjectURL(file);im.onload=function(){var S=600,c=document.createElement('canvas');c.width=c.height=S;var x=c.getContext('2d'),m=Math.min(im.width,im.height),sx=(im.width-m)/2,sy=(im.height-m)/2;x.fillStyle='#fff';x.fillRect(0,0,S,S);x.drawImage(im,sx,sy,m,m,0,0,S,S);URL.revokeObjectURL(u);c.toBlob(function(b){if(!b)return no(new Error('Não consegui preparar a imagem.'));var r=new FileReader();r.onload=function(){ok(String(r.result).split(',')[1])};r.readAsDataURL(b)},'image/jpeg',.85)};im.onerror=function(){no(new Error('Esse arquivo não parece ser uma imagem.'))};im.src=u})}
+function renderLogo(){var u=PH.__logo,b=$('logoBox');b.classList.remove('busy');b.innerHTML='<div class="lgi">'+(u?'<img src="'+esc(u)+'" alt="Logo">':'♛')+'</div><div class="lgt"><b>Logo da loja</b><small>Aparece no topo do cardápio. De preferência uma imagem quadrada.</small></div><div class="lgb"><button type="button" id="lgUp">'+(u?'Trocar logo':'Adicionar logo')+'</button>'+(u?'<button type="button" class="sec" id="lgRm">Remover</button>':'')+'</div>'}
+  $('logoBox').addEventListener('click',function(e){
+    if(e.target.id==='lgUp'){if(!TOKEN){msg('Configure a chave em "Conexão para salvar" para enviar a logo.','err');$('conn').open=true;return}pickIdx=-2;$('pick').value='';$('pick').click()}
+    else if(e.target.id==='lgRm'){if(!confirm('Remover a logo?'))return;this.classList.add('busy');delete PH.__logo;msg('');
+      savePhotos('Painel do dono: remove logo').then(function(){msg('Logo removida. O cardápio atualiza em cerca de 1 minuto.','ok')}).catch(function(er){msg('Não foi possível remover: '+er.message,'err')}).then(render)}
+  });
   $('list').addEventListener('click',function(e){
     var k=e.target.closest('[data-pk]'),r=e.target.closest('[data-rm]');
     if(k){if(!TOKEN){msg('Configure a chave em "Conexão para salvar" para enviar fotos.','err');$('conn').open=true;return}pickIdx=+k.dataset.pk;$('pick').value='';$('pick').click()}
@@ -161,12 +168,12 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
       savePhotos('Painel do dono: remove foto de '+t.label).then(function(){msg('Foto removida. O cardápio atualiza em cerca de 1 minuto.','ok')}).catch(function(er){msg('Não foi possível remover: '+er.message,'err')}).then(render)}
   });
   $('pick').addEventListener('change',function(){
-    var f=this.files[0];if(!f||pickIdx<0)return;var t=T[pickIdx],name=t.label,path='fotos/'+slug(name)+'.jpg';
+    var f=this.files[0];if(!f||(pickIdx<0&&pickIdx!==-2))return;var lg=pickIdx===-2,name=lg?'Logo da loja':T[pickIdx].label,key=lg?'__logo':name,path=lg?'fotos/logo.jpg':'fotos/'+slug(name)+'.jpg';if(lg)$('logoBox').classList.add('busy');
     msg('Enviando a foto de "'+name+'"…','ok');var box=document.querySelector('[data-ph="'+pickIdx+'"]');if(box)box.classList.add('busy');
     shrink(f).then(function(b64){return gget(path).then(function(j){return gput(path,b64,j&&j.sha,'Painel do dono: foto de '+name)})})
-    .then(function(){PH[name]=path+'?v='+Date.now();return savePhotos('Painel do dono: foto de '+name)})
+    .then(function(){PH[key]=path+'?v='+Date.now();return savePhotos('Painel do dono: foto de '+name)})
     .then(function(){msg('Foto de "'+name+'" salva! O cardápio atualiza em cerca de 1 minuto.','ok')})
-    .catch(function(er){delete PH[name];var m=er.status===401||er.status===403||er.status===404?'A chave não foi aceita (precisa de permissão de escrita em Contents neste repositório).':'Não foi possível enviar a foto: '+er.message;msg(m,'err')})
+    .catch(function(er){delete PH[key];var m=er.status===401||er.status===403||er.status===404?'A chave não foi aceita (precisa de permissão de escrita em Contents neste repositório).':'Não foi possível enviar a foto: '+er.message;msg(m,'err')})
     .then(render);
   });
   function load(){
