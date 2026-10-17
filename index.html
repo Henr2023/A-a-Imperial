@@ -20,6 +20,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-
 .slide svg{position:absolute;right:2%;bottom:-6%;height:112%;z-index:1}
 .s1{background:radial-gradient(120% 140% at 85% 30%,#8a3a9c,#4b1660 55%,#2a0634)}
 .s2{background:radial-gradient(120% 140% at 85% 30%,#f6c24a,#e08a1e 55%,#a4500f)}
+.slide.sb{padding:0}.slide.sb img{width:100%;height:100%;object-fit:cover;display:block}
 .s2 small{background:#4b1660;color:#fff}.s2 .cta{color:#a4500f}
 .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:6px;z-index:3}
 .dots button{width:7px;height:7px;border-radius:99px;border:0;padding:0;background:rgba(255,255,255,.55);cursor:pointer;transition:width .3s}
@@ -183,13 +184,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 <script>
 (function(){
   /* Carrossel: troca a cada 4s, pausa ao tocar, aceita arrastar */
-  var track=document.getElementById('track'),dots=[].slice.call(document.querySelectorAll('#dots button')),i=0,n=dots.length,t;
+  var track=document.getElementById('track'),dots,i=0,n,t;
+  function setupCar(){dots=[].slice.call(document.querySelectorAll('#dots button'));n=dots.length;i=0;document.getElementById('dots').style.display=n>1?'':'none';dots.forEach(function(d,j){d.onclick=function(){go(j);play()}});go(0);if(n>1)play();else clearInterval(t)}
   function go(k){i=(k+n)%n;track.style.transform='translateX('+(-100*i)+'%)';dots.forEach(function(d,j){d.classList.toggle('on',j===i)})}
   function play(){clearInterval(t);t=setInterval(function(){go(i+1)},4000)}
-  dots.forEach(function(d,j){d.onclick=function(){go(j);play()}});
   var x0=null;track.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;clearInterval(t)},{passive:true});
-  track.addEventListener('touchend',function(e){if(x0!==null){var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null}play()});
-  play();
+  track.addEventListener('touchend',function(e){if(x0!==null){var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null}if(n>1)play()});
+  setupCar();
 
   /* Ilustrações por tipo de item */
   var A={
@@ -361,7 +362,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   renderC();
 
   /* Lê o CARDAPIO.md do próprio repositório: editou o .md, o site atualiza sozinho */
-  fetch('fotos.json?v='+Date.now()).then(function(r){return r.ok?r.json():{}}).catch(function(){return{}}).then(function(P){PHOTOS=P&&typeof P==='object'?P:{};if(PHOTOS.__logo){var lgE=document.querySelector('.logo');if(lgE)lgE.innerHTML='<img src="'+esc(PHOTOS.__logo)+'" alt="Açaí Imperial">'}return fetch('CARDAPIO.md?v='+Date.now())}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(md){
+  fetch('fotos.json?v='+Date.now()).then(function(r){return r.ok?r.json():{}}).catch(function(){return{}}).then(function(P){PHOTOS=P&&typeof P==='object'?P:{};var bs=[1,2,3,4,5].map(function(k){return PHOTOS['__banner'+k]}).filter(Boolean);if(bs.length){track.innerHTML=bs.map(function(u){return '<div class="slide sb"><img src="'+esc(u)+'" alt="Banner"></div>'}).join('');document.getElementById('dots').innerHTML=bs.map(function(u,k){return '<button aria-label="Banner '+(k+1)+'"></button>'}).join('');setupCar()}if(PHOTOS.__logo){var lgE=document.querySelector('.logo');if(lgE)lgE.innerHTML='<img src="'+esc(PHOTOS.__logo)+'" alt="Açaí Imperial">'}return fetch('CARDAPIO.md?v='+Date.now())}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(md){
     var secs=md.split(/^## /m).slice(1),tabs='',html='',T={},H={};
     secs.forEach(function(s){
       var lines=s.trim().split('\n');H[lines[0].trim()]=(lines.filter(function(l){return l.charAt(0)==='|'})[0]||'').toLowerCase();

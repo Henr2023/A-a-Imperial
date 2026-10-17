@@ -34,6 +34,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 .ph .rm{position:absolute;top:-6px;right:-6px;width:20px;height:20px;padding:0;border-radius:50%;background:var(--bad);color:#fff;font-size:12px;line-height:20px}
 .ph.busy .pk{opacity:.4}
 .lg{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.lg .lgi{width:64px;height:64px;border-radius:50%;flex:none;overflow:hidden;background:linear-gradient(145deg,#7a2d8f,#4b1660);display:grid;place-items:center;color:#f4b400;font-size:26px}.lg .lgi img{width:100%;height:100%;object-fit:cover;display:block}.lg .lgt{flex:1;min-width:140px}.lg .lgt b{display:block}.lg .lgt small{color:var(--muted);font-size:12px}.lg .lgb{display:flex;gap:6px}.lg.busy .lgi{opacity:.4}
+.bn>b{display:block}.bn>small{color:var(--muted);font-size:12px;display:block;margin-bottom:10px}.bn .bi{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}.bn .bth{width:112px;aspect-ratio:16/7;border-radius:8px;overflow:hidden;flex:none;background:var(--bg)}.bn .bth img{width:100%;height:100%;object-fit:cover;display:block}.bn .bi span{flex:1;font-weight:600;font-size:14px;white-space:nowrap}.bn .bi button{padding:8px 12px}.bn.busy{opacity:.6;pointer-events:none}
 .ph.sm,.ph.sm .pk{width:38px;height:38px}.ph.sm .pk{font-size:15px}
 .gh2{padding:8px 14px;background:color-mix(in srgb,var(--acai2) 10%,transparent);color:var(--acai2);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-top:1px solid var(--line)}
 .it.chg{background:color-mix(in srgb,var(--gold,#f4b400) 14%,transparent)}
@@ -64,7 +65,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 <p id="tokMsg"></p></details>
 
 <div class="tools"><input type="search" id="q" placeholder="Buscar produto ou complemento…" aria-label="Buscar"><button class="sec" id="onlyOut" type="button">Só esgotados</button></div>
-<div class="box lg" id="logoBox"></div><div id="msg"></div>
+<div class="box lg" id="logoBox"></div><div class="box bn" id="bnBox"></div><div id="msg"></div>
 <input type="file" id="pick" accept="image/*" hidden>
 <div id="list"><div class="load">Carregando cardápio…</div></div>
 </div>
@@ -154,8 +155,16 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
   function savePhotos(msg){return gget('fotos.json').then(function(j){var cur={};if(j){try{cur=JSON.parse(b64d(j.content))||{}}catch(e){}}
     Object.keys(PH).forEach(function(k){cur[k]=PH[k]});Object.keys(cur).forEach(function(k){if(!(k in PH))delete cur[k]});
     return gput('fotos.json',b64e(JSON.stringify(cur,null,2)+'\n'),j&&j.sha,msg)}).then(function(r){phSha=r.content.sha})}
-  function shrink(file){return new Promise(function(ok,no){var im=new Image(),u=URL.createObjectURL(file);im.onload=function(){var S=600,c=document.createElement('canvas');c.width=c.height=S;var x=c.getContext('2d'),m=Math.min(im.width,im.height),sx=(im.width-m)/2,sy=(im.height-m)/2;x.fillStyle='#fff';x.fillRect(0,0,S,S);x.drawImage(im,sx,sy,m,m,0,0,S,S);URL.revokeObjectURL(u);c.toBlob(function(b){if(!b)return no(new Error('Não consegui preparar a imagem.'));var r=new FileReader();r.onload=function(){ok(String(r.result).split(',')[1])};r.readAsDataURL(b)},'image/jpeg',.85)};im.onerror=function(){no(new Error('Esse arquivo não parece ser uma imagem.'))};im.src=u})}
-function renderLogo(){var u=PH.__logo,b=$('logoBox');b.classList.remove('busy');b.innerHTML='<div class="lgi">'+(u?'<img src="'+esc(u)+'" alt="Logo">':'♛')+'</div><div class="lgt"><b>Logo da loja</b><small>Aparece no topo do cardápio. De preferência uma imagem quadrada.</small></div><div class="lgb"><button type="button" id="lgUp">'+(u?'Trocar logo':'Adicionar logo')+'</button>'+(u?'<button type="button" class="sec" id="lgRm">Remover</button>':'')+'</div>'}
+  function shrink(file,W,H){W=W||600;H=H||600;return new Promise(function(ok,no){var im=new Image(),u=URL.createObjectURL(file);im.onload=function(){var c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d'),r=Math.min(im.width/W,im.height/H),cw=W*r,ch=H*r,sx=(im.width-cw)/2,sy=(im.height-ch)/2;x.fillStyle='#fff';x.fillRect(0,0,W,H);x.drawImage(im,sx,sy,cw,ch,0,0,W,H);URL.revokeObjectURL(u);c.toBlob(function(b){if(!b)return no(new Error('Não consegui preparar a imagem.'));var r=new FileReader();r.onload=function(){ok(String(r.result).split(',')[1])};r.readAsDataURL(b)},'image/jpeg',.85)};im.onerror=function(){no(new Error('Esse arquivo não parece ser uma imagem.'))};im.src=u})}
+function renderBanners(){var b=$('bnBox'),h='',free=0;b.classList.remove('busy');for(var k=1;k<=5;k++){var u=PH['__banner'+k];if(u)h+='<div class="bi"><div class="bth"><img src="'+esc(u)+'" alt=""></div><span>Banner '+k+'</span><button type="button" data-bup="'+k+'">Trocar</button><button type="button" class="sec" data-brm="'+k+'">Remover</button></div>';else if(!free)free=k}
+    if(free)h+='<div class="bi"><div class="bth" style="display:grid;place-items:center;color:var(--muted)">🖼️</div><span>Novo banner</span><button type="button" data-bup="'+free+'">Adicionar banner</button></div>';
+    b.innerHTML='<b>Banners do topo</b><small>Aparecem passando no topo do cardápio (até 5). Use imagens deitadas, formato 16:7 (ex.: 1200 × 525). Sem banners, aparecem os de exemplo.</small>'+h}
+  $('bnBox').addEventListener('click',function(e){var u=e.target.closest('[data-bup]'),r=e.target.closest('[data-brm]');
+    if(u){if(!TOKEN){msg('Configure a chave em "Conexão para salvar" para enviar banners.','err');$('conn').open=true;return}pickIdx=-9-(+u.dataset.bup);$('pick').value='';$('pick').click()}
+    else if(r){var k=r.dataset.brm;if(!confirm('Remover o banner '+k+'?'))return;this.classList.add('busy');delete PH['__banner'+k];msg('');
+      savePhotos('Painel do dono: remove banner '+k).then(function(){msg('Banner removido. O cardápio atualiza em cerca de 1 minuto.','ok')}).catch(function(er){msg('Não foi possível remover: '+er.message,'err')}).then(render)}
+  });
+  function renderLogo(){renderBanners();var u=PH.__logo,b=$('logoBox');b.classList.remove('busy');b.innerHTML='<div class="lgi">'+(u?'<img src="'+esc(u)+'" alt="Logo">':'♛')+'</div><div class="lgt"><b>Logo da loja</b><small>Aparece no topo do cardápio. De preferência uma imagem quadrada.</small></div><div class="lgb"><button type="button" id="lgUp">'+(u?'Trocar logo':'Adicionar logo')+'</button>'+(u?'<button type="button" class="sec" id="lgRm">Remover</button>':'')+'</div>'}
   $('logoBox').addEventListener('click',function(e){
     if(e.target.id==='lgUp'){if(!TOKEN){msg('Configure a chave em "Conexão para salvar" para enviar a logo.','err');$('conn').open=true;return}pickIdx=-2;$('pick').value='';$('pick').click()}
     else if(e.target.id==='lgRm'){if(!confirm('Remover a logo?'))return;this.classList.add('busy');delete PH.__logo;msg('');
@@ -168,9 +177,9 @@ function renderLogo(){var u=PH.__logo,b=$('logoBox');b.classList.remove('busy');
       savePhotos('Painel do dono: remove foto de '+t.label).then(function(){msg('Foto removida. O cardápio atualiza em cerca de 1 minuto.','ok')}).catch(function(er){msg('Não foi possível remover: '+er.message,'err')}).then(render)}
   });
   $('pick').addEventListener('change',function(){
-    var f=this.files[0];if(!f||(pickIdx<0&&pickIdx!==-2))return;var lg=pickIdx===-2,name=lg?'Logo da loja':T[pickIdx].label,key=lg?'__logo':name,path=lg?'fotos/logo.jpg':'fotos/'+slug(name)+'.jpg';if(lg)$('logoBox').classList.add('busy');
+    var f=this.files[0];if(!f||(pickIdx<0&&pickIdx!==-2&&pickIdx>-10))return;var lg=pickIdx===-2,bn=pickIdx<=-10?-9-pickIdx:0,name=lg?'Logo da loja':bn?'Banner '+bn:T[pickIdx].label,key=lg?'__logo':bn?'__banner'+bn:name,path=lg?'fotos/logo.jpg':bn?'fotos/banner-'+bn+'.jpg':'fotos/'+slug(name)+'.jpg';if(lg)$('logoBox').classList.add('busy');if(bn)$('bnBox').classList.add('busy');
     msg('Enviando a foto de "'+name+'"…','ok');var box=document.querySelector('[data-ph="'+pickIdx+'"]');if(box)box.classList.add('busy');
-    shrink(f).then(function(b64){return gget(path).then(function(j){return gput(path,b64,j&&j.sha,'Painel do dono: foto de '+name)})})
+    shrink(f,bn?1200:600,bn?525:600).then(function(b64){return gget(path).then(function(j){return gput(path,b64,j&&j.sha,'Painel do dono: foto de '+name)})})
     .then(function(){PH[key]=path+'?v='+Date.now();return savePhotos('Painel do dono: foto de '+name)})
     .then(function(){msg('Foto de "'+name+'" salva! O cardápio atualiza em cerca de 1 minuto.','ok')})
     .catch(function(er){delete PH[key];var m=er.status===401||er.status===403||er.status===404?'A chave não foi aceita (precisa de permissão de escrita em Contents neste repositório).':'Não foi possível enviar a foto: '+er.message;msg(m,'err')})
