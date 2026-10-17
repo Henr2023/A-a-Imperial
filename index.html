@@ -77,6 +77,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
 .gh .req{color:#fff}
 .op{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);cursor:pointer}
 .op small{display:block;color:var(--muted);font-size:12px}
+.op .opi{width:56px;height:56px;border-radius:10px;object-fit:cover;flex:none}.op .opt{flex:1;min-width:0}.op.dis .opi{filter:grayscale(1);opacity:.6}
 .op input{width:20px;height:20px;accent-color:var(--acai2);flex:none}
 .op.dis{opacity:.4;cursor:not-allowed}
 .qty{display:inline-flex;align-items:center;gap:10px;margin-left:auto}.qty[hidden]{display:none}
@@ -273,7 +274,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     shB.innerHTML=cur.groups.map(function(gp){
       var type=gp.max===1&&gp.min?'radio':'checkbox';
       return '<div data-g="'+gp.id+'"><div class="gh"><div><b>'+esc(gp.name)+'</b><span class="hint">'+esc(gp.hint)+'</span></div>'+(gp.min?'<span class="req">Obrigatório</span>':'')+'</div>'+
-        gp.opts.map(function(o,k){return '<label class="op'+(o.out?' dis':'')+'"><span>'+esc(o[0])+(o.out?'<small>Esgotado</small>':o.stock?'<small class="stk">Em estoque</small>':'')+(o[2]?'<small>'+esc(o[2])+'</small>':'')+(o[1]&&!gp.base?'<small>+ '+brl(o[1])+(o[3]?' cada':'')+'</small>':'')+(gp.base?'<small>'+brl(o[1])+'</small>':'')+'</span>'+(o[3]?'<span class="qty" data-q="'+gp.id+':'+k+'" data-max="'+o[3]+'" hidden><button type="button" class="qm" aria-label="Menos">−</button><b>1</b><button type="button" class="qp" aria-label="Mais">+</button></span>':'')+'<input type="'+type+'" name="m-'+gp.id+'" value="'+k+'"'+(o.out?' disabled data-out="1"':'')+'></label>'}).join('')+'</div>';
+        gp.opts.map(function(o,k){return '<label class="op'+(o.out?' dis':'')+'">'+(PHOTOS[o[0]]?'<img class="opi" src="'+esc(PHOTOS[o[0]])+'" alt="" loading="lazy">':'')+'<span class="opt">'+esc(o[0])+(o.out?'<small>Esgotado</small>':o.stock?'<small class="stk">Em estoque</small>':'')+(o[2]?'<small>'+esc(o[2])+'</small>':'')+(o[1]&&!gp.base?'<small>+ '+brl(o[1])+(o[3]?' cada':'')+'</small>':'')+(gp.base?'<small>'+brl(o[1])+'</small>':'')+'</span>'+(o[3]?'<span class="qty" data-q="'+gp.id+':'+k+'" data-max="'+o[3]+'" hidden><button type="button" class="qm" aria-label="Menos">−</button><b>1</b><button type="button" class="qp" aria-label="Mais">+</button></span>':'')+'<input type="'+type+'" name="m-'+gp.id+'" value="'+k+'"'+(o.out?' disabled data-out="1"':'')+'></label>'}).join('')+'</div>';
     }).join('');
     upd();ov.hidden=false;document.body.style.overflow='hidden';document.getElementById('shX').focus();
   }

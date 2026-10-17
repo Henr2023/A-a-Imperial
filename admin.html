@@ -33,6 +33,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
 .ph .pk img{width:100%;height:100%;object-fit:cover;display:block}
 .ph .rm{position:absolute;top:-6px;right:-6px;width:20px;height:20px;padding:0;border-radius:50%;background:var(--bad);color:#fff;font-size:12px;line-height:20px}
 .ph.busy .pk{opacity:.4}
+.ph.sm,.ph.sm .pk{width:38px;height:38px}.ph.sm .pk{font-size:15px}
 .gh2{padding:8px 14px;background:color-mix(in srgb,var(--acai2) 10%,transparent);color:var(--acai2);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-top:1px solid var(--line)}
 .it.chg{background:color-mix(in srgb,var(--gold,#f4b400) 14%,transparent)}
 .stkb{flex:none;background:var(--bg);color:var(--muted);border:1px solid var(--line);padding:6px 9px;font-size:12px}.stkb.on{background:var(--ok);color:#fff;border-color:var(--ok)}
@@ -114,7 +115,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
       var n=s.items.filter(function(t){return t.out}).length,pg=null;
       h+='<details class="sec"'+((q||only)?' open':'')+'><summary><span>'+esc(secName(s))+'</span><span class="n">'+(n?n+' esgotado'+(n>1?'s':''):'')+'</span></summary>'+
       its.map(function(t){var i=T.indexOf(t),gh='';if(t.group&&t.group!==pg)gh='<div class="gh2">'+esc(t.group)+'</div>';pg=t.group;
-        var ph=t.prod?'<div class="ph" data-ph="'+i+'"><button type="button" class="pk" data-pk="'+i+'" title="Adicionar ou trocar a foto" aria-label="Foto de '+esc(t.label)+'">'+(PH[t.label]?'<img src="'+esc(PH[t.label])+'" alt="">':'📷')+'</button>'+(PH[t.label]?'<button type="button" class="rm" data-rm="'+i+'" title="Remover foto" aria-label="Remover foto">×</button>':'')+'</div>':'';
+        var ph=true?'<div class="ph'+(t.prod?'':' sm')+'" data-ph="'+i+'"><button type="button" class="pk" data-pk="'+i+'" title="Adicionar ou trocar a foto" aria-label="Foto de '+esc(t.label)+'">'+(PH[t.label]?'<img src="'+esc(PH[t.label])+'" alt="">':'📷')+'</button>'+(PH[t.label]?'<button type="button" class="rm" data-rm="'+i+'" title="Remover foto" aria-label="Remover foto">×</button>':'')+'</div>':'';
         return gh+'<div class="it'+(t.prod?' prod':'')+(t.out?' out':'')+(chg(t)?' chg':'')+'">'+ph+'<div class="t"><b>'+esc(t.label)+'</b>'+(t.price?'<small>'+esc(t.price.replace(/~~[^~]*~~\s*/g,''))+'</small>':'')+'</div>'+
         '<button type="button" class="stkb'+(t.stock?' on':'')+'" data-c="'+i+'"'+(t.out?' disabled':'')+' aria-pressed="'+!!t.stock+'">Em estoque</button><label class="sw"><input type="checkbox" data-i="'+i+'"'+(t.out?'':' checked')+' aria-label="'+esc((t.group?t.group+' ':'')+t.label)+': disponível"><span>'+(t.out?'Esgotado':'Disponível')+'</span></label></div>'}).join('')+'</details>';
     });
@@ -143,7 +144,7 @@ details.sec .n{font-weight:600;font-size:12px;color:var(--bad);white-space:nowra
     });
     return L.join('\n');
   }
-  /* ===== Fotos dos produtos ===== */
+  /* ===== Fotos dos produtos e opções ===== */
   var BASE='https://api.github.com/repos/'+REPO+'/contents/';
   function slug(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
   function gget(path){return fetch(BASE+path+'?ref='+BR+'&t='+Date.now(),{headers:hdrs(),cache:'no-store'}).then(function(r){if(r.status===404)return null;if(!r.ok)throw new Error('Não consegui ler '+path+' ('+r.status+').');return r.json()})}
