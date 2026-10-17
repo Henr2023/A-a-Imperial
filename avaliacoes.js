@@ -68,7 +68,7 @@ if(document.getElementById('avBox'))window.AV_INIT();
     var star=document.querySelector('.meta .star'),box=document.getElementById('avBox');
     /* espera as avaliações carregarem (só aparecem depois que o Firebase estiver configurado) */
     if(!star||!box||!box.querySelector('.av-top')){if(++tries<100)setTimeout(init,300);return}
-    var css='.star.av-open{cursor:pointer;background:none;border:0;color:inherit;font:inherit;padding:0;text-decoration:underline dotted;text-underline-offset:3px}'+
+    var css='.star.av-open{cursor:pointer;background:none;border:0;color:var(--gold,#f4b400);font-weight:700;font:inherit;padding:0;text-decoration:underline dotted;text-underline-offset:3px}'+
       '#avOv{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;display:flex;align-items:flex-end;justify-content:center}#avOv[hidden]{display:none}'+
       '#avOv .avw{background:#1d1d1f;color:var(--ink,#f2f2f2);width:100%;max-width:560px;max-height:88vh;overflow:auto;border-radius:18px 18px 0 0;padding-bottom:16px}'+
       '@media(min-width:640px){#avOv{align-items:center}#avOv .avw{border-radius:18px}}'+
