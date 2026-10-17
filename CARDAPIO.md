@@ -17,7 +17,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Yin Yang - O Equilíbrio Perfeito para seu Paladar | 2 copos de 400ml. Creme Black (cacau 70%) e creme White (chocolate branco) sobre leite condensado, leite em pó, granola e banana. | ~~R$ 65,99~~ R$ 59,00 |
+| Combo Yin Yang Premium: O Equilíbrio da sua Sanidade Mental (2x 500ml) | A prova definitiva de que os opostos não só se atraem, como são deliciosos juntos.\n\nQuem disse que você não pode ter tudo? O Combo Yin Yang chegou para resolver a maior crise existencial do seu estômago com dois super copos de 500ml. É a harmonia perfeita entre o "sou intenso" e o "sou romântico".\n\nA base da nossa diplomacia de sabor:\nUm açaí incrivelmente cremoso que recebe com tapete vermelho a doçura da calda de leite condensado, a fofura do leite em pó, o "croc-croc" de uma granola gourmet de respeito e fatias de banana que parecem ter passado por um controle de qualidade de resort 5 estrelas.\n\nE no topo? O evento principal da noite. Nossos dois cremes de colher que passaram horas no fogo baixo só para te impressionar:\n\n🖤 Creme Black: Um brigadeiro nobre de colher com chocolate Black e cacau 70%. É denso, é escuro, é o lado "rock 'n' roll" do copo.\n\n🤍 Creme White: Uma nuvem aveludada de chocolate branco fundido com Leite Ninho. É a paz de espírito em forma de creme.\n\nUma experiência gourmet tão perfeita que você tem duas opções: dividir com o seu @ (e testar o limite do amor de vocês) ou tomar os dois sozinho porque, convenhamos, você merece esse equilíbrio hoje.\n\n☯️ Separe suas colheres e peça o seu agora! | ~~R$ 65,99~~ R$ 59,00 |
 | Açaí Coroa Imperial de Nutella | 400ml. Coroa de banana, leite condensado, leite em pó, amendoim e Nutella generosa no centro. Chega bonito, volta vazio. | R$ 36,99 |
 | Açaí Trufado Imperial |  | ~~R$ 45,00~~ R$ 37,00 |
 | Mini Roleta (1 pessoa) | 4 divisões: banana, paçoca, creme de Ninho e creme de morango, com leite condensado no centro. | R$ 28,99 |
@@ -124,7 +124,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Água com gás 500ml | Gelada. | R$ 5,99 |
 | Red Bull 250ml | Energético, gelado. | R$ 15,99 |
 
-## Opções: Yin Yang - O Equilíbrio Perfeito para seu Paladar
+## Opções: Combo Yin Yang Premium: O Equilíbrio da sua Sanidade Mental (2x 500ml)
 
 | Etapa | Opção | Preço |
 |---|---|---|
