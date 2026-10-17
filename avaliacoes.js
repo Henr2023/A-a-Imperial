@@ -57,3 +57,41 @@
   };
 })();
 if(document.getElementById('avBox'))window.AV_INIT();
+
+/* Janela de avaliações: a nota do topo (★) abre as avaliações na frente do cardápio */
+(function(){
+  var ov,last=null;
+  function open(){last=document.activeElement;ov.hidden=false;document.body.style.overflow='hidden';ov.querySelector('.avx').focus()}
+  function close(){ov.hidden=true;document.body.style.overflow='';if(last&&last.focus)last.focus()}
+  var tries=0;
+  function init(){
+    var star=document.querySelector('.meta .star'),box=document.getElementById('avBox');
+    /* espera as avaliações carregarem (só aparecem depois que o Firebase estiver configurado) */
+    if(!star||!box||!box.querySelector('.av-top')){if(++tries<100)setTimeout(init,300);return}
+    var css='.star.av-open{cursor:pointer;background:none;border:0;color:inherit;font:inherit;padding:0;text-decoration:underline dotted;text-underline-offset:3px}'+
+      '#avOv{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;display:flex;align-items:flex-end;justify-content:center}#avOv[hidden]{display:none}'+
+      '#avOv .avw{background:#1d1d1f;color:var(--ink,#f2f2f2);width:100%;max-width:560px;max-height:88vh;overflow:auto;border-radius:18px 18px 0 0;padding-bottom:16px}'+
+      '@media(min-width:640px){#avOv{align-items:center}#avOv .avw{border-radius:18px}}'+
+      '#avOv .avh{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 8px;position:sticky;top:0;background:#1d1d1f;z-index:1}'+
+      '#avOv .avh h3{margin:0;font-size:18px}#avOv .avx{border:0;width:34px;height:34px;border-radius:50%;background:#2c2c2e;color:inherit;font-size:16px;cursor:pointer}';
+    var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+    ov=document.createElement('div');ov.id='avOv';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Avaliações');
+    ov.innerHTML='<div class="avw"><div class="avh"><h3>Avaliações</h3><button type="button" class="avx" aria-label="Fechar">✕</button></div></div>';
+    document.body.appendChild(ov);
+    ov.querySelector('.avw').appendChild(box);
+    var sec=document.getElementById('avaliacoes');if(sec)sec.hidden=true;
+    var btn=document.createElement('button');btn.type='button';btn.className='star av-open';btn.setAttribute('aria-label','Ver avaliações');btn.textContent='★ Avaliar';
+    star.replaceWith(btn);
+    function sync(){
+      var b=box.querySelector('.av-avg b'),s=box.querySelector('.av-avg span');
+      var n=s&&(s.textContent.match(/\d+/)||[])[0];
+      btn.textContent=b?('★ '+b.textContent+(n?' ('+n+')':'')):'★ Avaliar';
+    }
+    new MutationObserver(sync).observe(box,{childList:true,subtree:true});sync();
+    btn.onclick=open;ov.querySelector('.avx').onclick=close;
+    ov.addEventListener('click',function(e){if(e.target===ov)close()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)close()});
+    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#avaliacoes"]');if(a){e.preventDefault();open()}});
+  }
+  init();
+})();
