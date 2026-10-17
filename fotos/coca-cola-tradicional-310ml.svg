@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#5a2391"/><stop offset="1" stop-color="#1c0b2e"/></radialGradient>
+<linearGradient id="shine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#8a8f98"/><stop offset=".45" stop-color="#eef1f5"/><stop offset="1" stop-color="#7d828b"/></linearGradient>
+<linearGradient id="shade" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".35" stop-color="#000" stop-opacity="0"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient>
+</defs><rect width="400" height="400" fill="url(#bg)"/>
+<ellipse cx="200" cy="350" rx="110" ry="16" fill="#000" opacity=".35"/><rect x="135" y="78" width="130" height="264" rx="22" fill="#d81920"/>
+<rect x="135" y="78" width="130" height="264" rx="22" fill="url(#shade)"/>
+<rect x="135" y="200" width="130" height="10" fill="#fff" opacity=".9"/>
+<rect x="135" y="78" width="130" height="26" rx="12" fill="url(#metal)"/>
+<rect x="135" y="318" width="130" height="24" rx="12" fill="url(#metal)"/>
+<ellipse cx="200" cy="80" rx="58" ry="9" fill="#c9cdd3"/><ellipse cx="200" cy="80" rx="46" ry="6" fill="#a3a8b0"/>
+<rect x="188" y="74" width="26" height="8" rx="4" fill="#d9dce1"/>
+<rect x="160" y="104" width="16" height="214" fill="url(#shine)" opacity=".8"/><ellipse cx="160" cy="170" rx="3" ry="4.5" fill="#fff" opacity=".45"/><ellipse cx="232" cy="150" rx="3" ry="4.5" fill="#fff" opacity=".45"/><ellipse cx="178" cy="240" rx="3" ry="4.5" fill="#fff" opacity=".45"/><ellipse cx="244" cy="262" rx="3" ry="4.5" fill="#fff" opacity=".45"/><ellipse cx="205" cy="300" rx="3" ry="4.5" fill="#fff" opacity=".45"/><ellipse cx="166" cy="286" rx="3" ry="4.5" fill="#fff" opacity=".45"/><ellipse cx="226" cy="206" rx="3" ry="4.5" fill="#fff" opacity=".45"/></svg>
