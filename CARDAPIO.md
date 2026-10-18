@@ -104,7 +104,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Coração Imperial |  | R$ 27,00 |
+| Coração Imperial [esgotado] |  | R$ 27,00 |
 | Roletinha Imperial |  | R$ 29,99 |
 
 ## Copos da Felicidade (sem açaí)
