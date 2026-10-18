@@ -104,7 +104,6 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Coração Imperial [esgotado] |  | R$ 27,00 |
 | Roletinha Imperial | Quatro divisões, quatro sabores, zero chance de escolher só um.\n\nNossa Roletinha chega dividida em 4 partes, cada uma com seu momento:\n🤍 Creme de Ninho — aveludado e docinho\n🍫 Creme de chocolate — intenso e cremoso\n🍇 Uvas — fresquinhas e suculentas\n🍓 Morango — vermelhinho e cheio de sabor\n\nGire, escolha por onde começar e vá provando cada pedaço. No final, a roleta sempre para no mesmo lugar: no "quero outra". | R$ 29,99 |
 
 ## Copos da Felicidade (sem açaí)
@@ -165,13 +164,6 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Qual sabor da sua Trufa? (escolha 1) | Morango | Grátis |
 | Deseja talheres? (escolha 1) | Quero talheres (até 2) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
-
-## Opções: Coração Imperial
-
-| Etapa | Opção | Preço |
-|---|---|---|
-| Deseja palitos? (escolha 1) | Quero palitos (até 2) | Grátis |
-| Deseja palitos? (escolha 1) | Não quero palitos | Grátis |
 
 ## Opções: Roletinha Imperial
 
