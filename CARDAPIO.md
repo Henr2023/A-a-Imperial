@@ -29,10 +29,10 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Etapa | Opção | Preço |
 |---|---|---|
 | Monte seu Açaí | Açaí cremoso no copo bolha. Escolha o tamanho, o tipo, a calda, as frutas, os cremes e as guloseimas do seu jeito. | R$ 0,00 |
-| Qual o tamanho? (escolha 1) | 350ml | R$ 21,99 |
-| Qual o tamanho? (escolha 1) | 400ml | R$ 24,99 |
-| Qual o tamanho? (escolha 1) | 500ml | R$ 29,99 |
-| Qual o tamanho? (escolha 1) | 700ml | R$ 37,99 |
+| Qual o tamanho? (escolha 1) | 700ml | R$ 29,99 |
+| Qual o tamanho? (escolha 1) | 550ml | R$ 23,99 |
+| Qual o tamanho? (escolha 1) | 400ml | R$ 21,99 |
+| Qual o tamanho? (escolha 1) | 350ml | R$ 17,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí Imperial Nobre | Grátis |
 | Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango | R$ 5,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu | R$ 6,99 |
