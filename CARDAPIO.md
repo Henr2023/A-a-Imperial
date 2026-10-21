@@ -222,3 +222,9 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Caldas | Chocolate, morango, maracujá, caramelo | R$ 2,00 cada |
 
 Nos combos: adicione uma bebida (Coca lata ou água) com R$ 1,00 de desconto.
+
+## Cupons
+
+| Cupom | Desconto | Pedido mínimo |
+|---|---|---|
+| IMPERIAL5 | R$ 5,00 | R$ 0,00 |
