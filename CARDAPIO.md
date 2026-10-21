@@ -42,11 +42,11 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Qual sua calda? (até 1) | Geleia de morango caseira | Grátis |
 | Qual sua calda? (até 1) | Chocolate | Grátis |
 | Qual sua calda? (até 1) | Mel mineiro | Grátis |
-| Qual sua fruta? (até 4) | Banana | Grátis |
-| Qual sua fruta? (até 4) | Abacaxi | Grátis |
-| Qual sua fruta? (até 4) | Uvas | R$ 0,99 |
-| Qual sua fruta? (até 4) | Morango | R$ 2,89 |
-| Qual sua fruta? (até 4) | Kiwi | R$ 3,89 |
+| Qual sua fruta? (até 1) | Banana | Grátis |
+| Qual sua fruta? (até 1) | Abacaxi | Grátis |
+| Qual sua fruta? (até 1) | Uvas | R$ 0,99 |
+| Qual sua fruta? (até 1) | Morango | R$ 2,89 |
+| Qual sua fruta? (até 1) | Kiwi | R$ 3,89 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Nutella | R$ 7,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme Brigadeiro | R$ 6,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Ninho | R$ 6,99 |
