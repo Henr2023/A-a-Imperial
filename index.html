@@ -390,9 +390,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
     var o=pedido();if(!o)return;
     var cod=String(Date.now()).slice(-4);
     var t='*NOVO PEDIDO #'+cod+' · Açaí Imperial*\n'+o.dt+'\n\n*'+o.tipo.toUpperCase()+'*\nCliente: '+o.nome+(o.tipo==='Entrega'?'\nEndereço: '+o.end:'')+'\n\n'+
-      CART.map(function(it){return '*'+it.q+'x '+it.name+'* · '+brl(it.p*it.q)+it.det.map(function(x){return '\n   '+x.replace(/^[^:]*:\s*/,'')}).join('')}).join('\n')+
+      CART.map(function(it){var pz=brl(it.p*it.q),d=it.det.map(function(x){return x.replace(/^[^:]*:\s*/,'')});
+        if(!d.length)return '*'+it.q+'x '+it.name+' · '+pz+'*';
+        var f=d[0];while(f.length<25)f+=' ';
+        return '*'+it.q+'x '+it.name+'*\n\n    *'+f+' '+pz+'*'+d.slice(1).map(function(x){return '\n\n   *'+x+'*'}).join('')}).join('\n\n')+
       (cDisc()?'\n\nSubtotal: '+brl(cSub())+'\nCupom '+CUP+(cupOk().first?' (PRIMEIRA COMPRA)':'')+': − '+brl(cDisc()):'')+
-      '\n\n*TOTAL: '+brl(cTotal())+'*\nPagamento: '+o.pg+(o.obs?'\nObs: '+o.obs:'');
+      '\n\n*TOTAL: '+brl(cTotal())+'*'+(o.tipo==='Entrega'?'\n  + Frete a consulta!':'')+'\nPagamento: '+o.pg+(o.obs?'\n\nObs: *'+o.obs.replace(/\s*\n\s*/g,' ')+'*':'');
     var url='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
     if(!window.open(url,'_blank'))location.href=url;
     limpa('Pedido #'+cod+' enviado pelo WhatsApp');
