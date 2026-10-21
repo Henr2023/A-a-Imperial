@@ -111,7 +111,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Item | Descrição | Preço |
 |---|---|---|
 | Mut-Felicidade | Escolha seu copo da felicidade: Ninho Fruit, Escondidinho de Uvas, Chocolate ao Morango ou Ninho com Morango. | A partir de R$ 19,99 |
-| Manga Louca (500ml) | 🥭 Copo de Manga Verde ou Meio Madura Temperada!\nA verdadeira paixão nacional em um copo super generoso para comer onde quiser.\n\nManga fresca cortada em cubos ou fatias, servida geladinha no copão. Escolha os temperos que vão fazer suas papilas gustativas irem à loucura!\n\nMonte seu sabor:\nNossas mangas podem vir verdes (crocantes e azedinhas) ou meio maduras, dependendo de como estiverem no estoque.\n\nAdicione os temperos ao seu gosto (selecione abaixo):\n- Sal\n- Limão fresquinho\n- Pimenta-do-reino\n- Páprica picante\n- Limão pepe\n\nDica do chefe: os 5 temperos juntos deixam a manga perfeita — o combo que nunca erra! | R$ 16,99 |
+| Manga Louca | 🥭 Copo de Manga Verde ou Meio Madura Temperada!\nA verdadeira paixão nacional em um copo super generoso para comer onde quiser.\n\nManga fresca cortada em cubos ou fatias, servida geladinha no copão. Escolha os temperos que vão fazer suas papilas gustativas irem à loucura!\n\nMonte seu sabor:\nNossas mangas podem vir verdes (crocantes e azedinhas) ou meio maduras, dependendo de como estiverem no estoque.\n\nAdicione os temperos ao seu gosto (selecione abaixo):\n\nDica do chefe: os 5 temperos juntos deixam a manga perfeita — o combo que nunca erra! | R$ 16,99 |
 
 ## Bebidas s/ Álcool
 
@@ -192,7 +192,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Deseja canudo? (escolha 1) | Quero canudo (até 1) | Grátis |
 | Deseja canudo? (escolha 1) | Não quero canudo | Grátis |
 
-## Opções: Manga Louca (500ml)
+## Opções: Manga Louca
 
 | Etapa | Opção | Preço |
 |---|---|---|
