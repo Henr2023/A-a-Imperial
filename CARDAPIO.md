@@ -105,7 +105,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Roletinha Imperial | Quatro divisões, quatro sabores, zero chance de escolher só um.\n\nNossa Roletinha chega dividida em 4 partes, cada uma com seu momento:\n🤍 Creme de Ninho — aveludado e docinho\n🍫 Creme de chocolate — intenso e cremoso\n🍇 Uvas — fresquinhas e suculentas\n🍓 Morango — vermelhinho e cheio de sabor\n\nGire, escolha por onde começar e vá provando cada pedaço. No final, a roleta sempre para no mesmo lugar: no "quero outra". | R$ 29,99 |
+| Roletinha Imperial | Quatro divisões, quatro sabores, zero chance de escolher só um.\n\nNossa Roletinha chega dividida em 4 partes, cada uma com seu momento:\n🤍 Creme de Ninho — aveludado e docinho\n🍫 Creme de chocolate — intenso e cremoso\n🍇 Uvas — fresquinhas e suculentas\n🍓 Morango — vermelhinho e cheio de sabor\n\nGire, escolha por onde começar e vá provando cada pedaço. No final, a roleta sempre para no mesmo lugar: no "quero outra". | R$ 29,00 |
 
 ## Copos da Felicidade (sem açaí)
 
