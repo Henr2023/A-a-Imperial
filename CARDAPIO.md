@@ -225,6 +225,7 @@ Nos combos: adicione uma bebida (Coca lata ou água) com R$ 1,00 de desconto.
 
 ## Cupons
 
-| Cupom | Desconto | Pedido mínimo |
-|---|---|---|
-| IMPERIAL5 | R$ 5,00 | R$ 0,00 |
+| Cupom | Desconto | Pedido mínimo | Regra |
+|---|---|---|---|
+| IMPERIAL5 | R$ 5,00 | R$ 0,00 | |
+| PRIMEIRA5OFF | R$ 5,00 | R$ 0,00 | Só na primeira compra |
