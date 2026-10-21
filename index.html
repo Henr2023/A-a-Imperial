@@ -321,8 +321,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)closeM()});
   document.getElementById('shGo').onclick=function(){
     var p=upd(),det=[];
-    cur.groups.forEach(function(gp){var ch=sel(gp.id);if(ch.length)det.push(gp.name.replace(/\?$/,'')+': '+ch.map(function(k){var o=gp.opts[k];return o[0]+(o[3]?' ('+(QTY[gp.id+':'+k]||1)+')':'')}).join(', '))});
-    addC({name:cur.name,p:p,det:det});closeM();
+    var ls=[];cur.groups.forEach(function(gp){var ch=sel(gp.id);ch.forEach(function(k){var o=gp.opts[k];ls.push(o[0]+(o[3]?' ('+(QTY[gp.id+':'+k]||1)+')':''))});if(ch.length)det.push(gp.name.replace(/\?$/,'')+': '+ch.map(function(k){var o=gp.opts[k];return o[0]+(o[3]?' ('+(QTY[gp.id+':'+k]||1)+')':'')}).join(', '))});
+    addC({name:cur.name,p:p,det:det,ls:ls});closeM();
   };
   function toast(t){var d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(function(){d.remove()},2200)}
 
@@ -353,7 +353,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   function loadCupons(rows){CUPONS={};rows.forEach(function(r){if(r.out)return;var k=(r[0]||'').toUpperCase().replace(/\s+/g,''),d=r[1]||'',min=money(r[2]||''),first=/primeira|1ª|1a compra/i.test(r[3]||'');if(!k)return;
     var pm=/(\d+(?:[.,]\d+)?)\s*%/.exec(d);if(pm)CUPONS[k]={pct:true,v:parseFloat(pm[1].replace(',','.')),min:min,first:first};else{var v=money(d);if(v>0)CUPONS[k]={pct:false,v:v,min:min,first:first}}});
     if(CUP&&!CUPONS[CUP]){CUP='';saveCup()}renderC()}
-  function addC(it){var k=it.name+'|'+it.det.join('|'),f=CART.filter(function(x){return x.k===k})[0];if(f)f.q++;else CART.push({k:k,name:it.name,p:it.p,det:it.det,q:1});saveC();renderC();toast(it.name+' no carrinho')}
+  function addC(it){var k=it.name+'|'+it.det.join('|'),f=CART.filter(function(x){return x.k===k})[0];if(f)f.q++;else CART.push({k:k,name:it.name,p:it.p,det:it.det,ls:it.ls,q:1});saveC();renderC();toast(it.name+' no carrinho')}
   function renderC(){
     var n=CART.reduce(function(s,it){return s+it.q},0);
     $('cbar').hidden=!n||!cov.hidden;document.querySelector('.app').classList.toggle('has-cart',!!n);
@@ -389,13 +389,14 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
   $('cGo').onclick=function(){
     var o=pedido();if(!o)return;
     var cod=String(Date.now()).slice(-4);
-    var t='*NOVO PEDIDO #'+cod+' · Açaí Imperial*\n'+o.dt+'\n\n*'+o.tipo.toUpperCase()+'*\nCliente: '+o.nome+(o.tipo==='Entrega'?'\nEndereço: '+o.end:'')+'\n\n'+
-      CART.map(function(it){var pz=brl(it.p*it.q),d=it.det.map(function(x){return x.replace(/^[^:]*:\s*/,'')});
+    var t='*NOVO PEDIDO #'+cod+' · Açaí Imperial*\n'+o.dt+'\n*'+o.tipo.toUpperCase()+'*\nCliente: '+o.nome+(o.tipo==='Entrega'?'\nEndereço: '+o.end:'')+'\n'+
+      CART.map(function(it){var pz=brl(it.p*it.q),d=it.ls||[];
+        if(!d.length)it.det.forEach(function(x){d=d.concat(x.replace(/^[^:]*:\s*/,'').split(/,\s*/))});
         if(!d.length)return '*'+it.q+'x '+it.name+' · '+pz+'*';
         var f=d[0];while(f.length<25)f+=' ';
-        return '*'+it.q+'x '+it.name+'*\n\n    *'+f+' '+pz+'*'+d.slice(1).map(function(x){return '\n\n   *'+x+'*'}).join('')}).join('\n\n')+
-      (cDisc()?'\n\nSubtotal: '+brl(cSub())+'\nCupom '+CUP+(cupOk().first?' (PRIMEIRA COMPRA)':'')+': − '+brl(cDisc()):'')+
-      '\n\n*TOTAL: '+brl(cTotal())+'*'+(o.tipo==='Entrega'?'\n  + Frete a consulta!':'')+'\nPagamento: '+o.pg+(o.obs?'\n\nObs: *'+o.obs.replace(/\s*\n\s*/g,' ')+'*':'');
+        return '*'+it.q+'x '+it.name+'*\n    *'+f+' '+pz+'*'+d.slice(1).map(function(x){return '\n   *'+x+'*'}).join('')}).join('\n')+
+      (cDisc()?'\nSubtotal: '+brl(cSub())+'\nCupom '+CUP+(cupOk().first?' (PRIMEIRA COMPRA)':'')+': − '+brl(cDisc()):'')+
+      '\n*TOTAL: '+brl(cTotal())+'*'+(o.tipo==='Entrega'?'\n  + Frete a consulta!':'')+'\nPagamento: '+o.pg+(o.obs?'\nObs: *'+o.obs.replace(/\s*\n\s*/g,' ')+'*':'');
     var url='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
     if(!window.open(url,'_blank'))location.href=url;
     limpa('Pedido #'+cod+' enviado pelo WhatsApp');
