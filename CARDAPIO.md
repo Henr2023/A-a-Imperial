@@ -123,6 +123,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Água sem gás 500ml | Gelada. | R$ 5,99 |
 | Água com gás 500ml | Gelada. | R$ 5,99 |
 | Red Bull 250ml | Energético, gelado. | R$ 15,99 |
+| Monster 473ml | Energético, gelado. | R$ 15,99 |
 
 ## Opções: Combo Yin Yang Premium: O Equilíbrio da sua Sanidade Mental (2x 500ml)
 
