@@ -394,7 +394,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px 0}
         if(!d.length)it.det.forEach(function(x){d=d.concat(x.replace(/^[^:]*:\s*/,'').split(/,\s*/))});
         if(!d.length)return '*'+it.q+'x '+it.name+' · '+pz+'*';
         var f=d[0];while(f.length<25)f+=' ';
-        return '*'+it.q+'x '+it.name+'*\n    *'+f+' '+pz+'*'+d.slice(1).map(function(x){return '\n   *'+x+'*'}).join('')}).join('\n')+
+        return '*'+it.q+'x '+it.name+'*\n    *'+f+' '+pz+'*'+d.slice(1).map(function(x){return '\n\n   *'+x+'*'}).join('')}).join('\n')+
       (cDisc()?'\nSubtotal: '+brl(cSub())+'\nCupom '+CUP+(cupOk().first?' (PRIMEIRA COMPRA)':'')+': − '+brl(cDisc()):'')+
       '\n*TOTAL: '+brl(cTotal())+'*'+(o.tipo==='Entrega'?'\n  + Frete a consulta!':'')+'\nPagamento: '+o.pg+(o.obs?'\nObs: *'+o.obs.replace(/\s*\n\s*/g,' ')+'*':'');
     var url='https://wa.me/'+WHATS+'?text='+encodeURIComponent(t);
