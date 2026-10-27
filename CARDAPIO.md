@@ -126,11 +126,11 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 
 | Item | Descrição | Preço |
 |---|---|---|
-| Coca-Cola Zero 310ml | Gelada. | R$ 6,99 |
+| Coca-Cola Zero 310ml [esgotado] | Gelada. | R$ 6,99 |
 | Coca-Cola Tradicional 310ml [esgotado] | Gelada. | R$ 6,99 |
-| Água sem gás 500ml | Gelada. | R$ 5,99 |
-| Água com gás 500ml | Gelada. | R$ 5,99 |
-| Red Bull 250ml | Energético, gelado. | R$ 15,99 |
+| Água sem gás 500ml [esgotado] | Gelada. | R$ 5,99 |
+| Água com gás 500ml [esgotado] | Gelada. | R$ 5,99 |
+| Red Bull 250ml [esgotado] | Energético, gelado. | R$ 15,99 |
 | Monster 473ml [esgotado] | Energético, gelado. | R$ 15,99 |
 
 ## Opções: Combo Yin Yang Premium: O Equilíbrio da sua Sanidade Mental (2x 500ml)
