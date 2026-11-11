@@ -9,7 +9,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Açaís Supremos Imperiais | Imperiais Supremos Açaís para compartilhar — ou enfrentar sozinho, sem arrependimento. | R$ 55,00 |
 | Escolha seu Supremo (escolha 1) | Açaí Tigela Imperial 1400ml | R$ 9,99 |
 | Escolha seu Supremo (escolha 1) | Açaí Tigela Imperial 1000ml - Explosão de Chocolate | Grátis |
-| Escolha seu Supremo (escolha 1) | Açaí Roleta 1000ml | Grátis |
+| Escolha seu Supremo (escolha 1) | Açaí Roleta 1000ml [esgotado] | Grátis |
 | Deseja talheres? (escolha 1) | Quero talheres (até 5) | R$ 0,45 |
 | Deseja talheres? (escolha 1) | Não quero talheres | Grátis |
 
@@ -30,12 +30,12 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 |---|---|---|
 | Monte seu Açaí | Açaí cremoso no copo bolha. Escolha o tamanho, o tipo, a calda, as frutas, os cremes e as guloseimas do seu jeito. | R$ 0,00 |
 | Qual o tamanho? (escolha 1) | 700ml | R$ 29,99 |
-| Qual o tamanho? (escolha 1) | 550ml | R$ 23,99 |
+| Qual o tamanho? (escolha 1) | 550ml [esgotado] | R$ 23,99 |
 | Qual o tamanho? (escolha 1) | 400ml | R$ 21,99 |
 | Qual o tamanho? (escolha 1) | 350ml | R$ 17,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí Imperial Nobre | Grátis |
-| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango | R$ 5,99 |
-| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu | R$ 6,99 |
+| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango [esgotado] | R$ 5,99 |
+| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu [esgotado] | R$ 6,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí c/ Cupuaçu | R$ 5,99 |
 | Qual sua calda? (até 1) | Leite condensado | Grátis |
 | Qual sua calda? (até 1) | Maracujá caseiro | Grátis |
@@ -54,7 +54,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Vamos de Cremes Artesanais? (até 3) | Creme de Nutella | R$ 7,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme Brigadeiro | R$ 6,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Ninho | R$ 6,99 |
-| Vamos de Cremes Artesanais? (até 3) | Creme de Maracujá | R$ 6,99 |
+| Vamos de Cremes Artesanais? (até 3) | Creme de Maracujá [esgotado] | R$ 6,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Amendoim | R$ 5,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Morango | R$ 4,99 |
 | Guloseimas Imperiais (até 5) | Sonho de Valsa | R$ 2,49 |
@@ -75,8 +75,8 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 |---|---|---|
 | Açaí Casal | Feito para dois — ou só para você, sem julgamentos.\n\n1000ml de açaí cremoso com até 5 complementos grátis: frutas, guloseimas, cremes e muito mais. Monte do seu jeito e receba do jeitinho que você pediu. | R$ 53,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí Imperial Nobre | Grátis |
-| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango | R$ 5,99 |
-| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu | R$ 6,99 |
+| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango [esgotado] | R$ 5,99 |
+| Qual seu tipo de açaí? (escolha 1) | Açaí de Ninho c/ Morango & Cupuaçu [esgotado] | R$ 6,99 |
 | Qual seu tipo de açaí? (escolha 1) | Açaí c/ Cupuaçu | R$ 5,99 |
 | Qual sua calda? (até 1) | Leite condensado | Grátis |
 | Qual sua calda? (até 1) | Maracujá caseiro | Grátis |
@@ -94,7 +94,7 @@ Açaí cremoso no copo bolha, cremes artesanais e combos pra dividir.
 | Vamos de Cremes Artesanais? (até 3) | Creme de Nutella | R$ 7,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme Brigadeiro | R$ 6,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Ninho | R$ 6,99 |
-| Vamos de Cremes Artesanais? (até 3) | Creme de Maracujá | R$ 6,99 |
+| Vamos de Cremes Artesanais? (até 3) | Creme de Maracujá [esgotado] | R$ 6,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Amendoim | R$ 5,99 |
 | Vamos de Cremes Artesanais? (até 3) | Creme de Morango | R$ 4,99 |
 | Guloseimas Imperiais (até 5) | Sonho de Valsa | R$ 2,49 |
